@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FootPerf — Équipements d'entraînement football | Livraison France 3-5j</title>
+  <meta name="description" content="Équipements d'entraînement football génériques et performants. Kit d'agilité, cônes, protège-tibias, récupération musculaire. Livraison France 3-5 jours. Marque FootPerf.">
+  <meta property="og:title" content="FootPerf — L'équipement qui fait la différence">
+  <meta property="og:description" content="Entraîne-toi comme un pro. Kit complet d'entraînement football dès 34,90€. Livraison France 3-5 jours.">
+  <meta property="og:image" content="https://images.pexels.com/photos/1618269/pexels-photo-1618269.jpeg?auto=compress&cs=tinysrgb&w=1200">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #0d3b2a;
+      --green-light: #1a5c3f;
+      --lime: #c8f000;
+      --white: #ffffff;
+      --gray-50: #f8f9fa;
+      --gray-100: #f1f3f5;
+      --gray-200: #e9ecef;
+      --gray-600: #6c757d;
+      --gray-800: #343a40;
+      --gray-900: #212529;
+      --red: #e03131;
+      --radius: 12px;
+      --shadow: 0 4px 20px rgba(0,0,0,0.10);
+      --shadow-lg: 0 8px 40px rgba(0,0,0,0.14);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--gray-900); background: var(--white); font-size: 16px; line-height: 1.6; }
+
+    /* NAV */
+    nav { background: var(--green); color: var(--white); padding: 0 1.5rem; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .logo { font-size: 1.5rem; font-weight: 900; color: var(--white); text-decoration: none; letter-spacing: -0.5px; }
+    .logo span { color: var(--lime); }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--lime); }
+    .cart-btn { background: var(--lime); color: var(--green); border: none; border-radius: 8px; padding: 0.5rem 1rem; font-weight: 700; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; transition: transform 0.15s; }
+    .cart-btn:hover { transform: scale(1.05); }
+    .cart-count { background: var(--red); color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+
+    /* HERO */
+    .hero { background: var(--green); color: var(--white); padding: 4rem 1.5rem 5rem; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: url('https://images.pexels.com/photos/1618269/pexels-photo-1618269.jpeg?auto=compress&cs=tinysrgb&w=1400') center/cover; opacity: 0.15; }
+    .hero-inner { max-width: 700px; margin: 0 auto; position: relative; }
+    .hero-badge { display: inline-block; background: var(--lime); color: var(--green); font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; padding: 0.35rem 0.9rem; border-radius: 100px; margin-bottom: 1.2rem; }
+    .hero h1 { font-size: clamp(1.9rem, 5vw, 3rem); font-weight: 900; line-height: 1.15; margin-bottom: 1rem; }
+    .hero h1 em { color: var(--lime); font-style: normal; }
+    .hero p { font-size: 1.1rem; color: rgba(255,255,255,0.85); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: var(--lime); color: var(--green); padding: 0.9rem 2rem; border-radius: 10px; font-weight: 800; font-size: 1rem; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; display: inline-block; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200,240,0,0.4); }
+    .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.5); padding: 0.9rem 2rem; border-radius: 10px; font-weight: 600; font-size: 1rem; text-decoration: none; transition: all 0.15s; display: inline-block; }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+    .hero-stats { display: flex; gap: 2rem; justify-content: center; margin-top: 3rem; flex-wrap: wrap; }
+    .hero-stat { text-align: center; }
+    .hero-stat strong { display: block; font-size: 1.5rem; font-weight: 900; color: var(--lime); }
+    .hero-stat span { font-size: 0.8rem; color: rgba(255,255,255,0.7); }
+
+    /* TRUST BAR */
+    .trust-bar { background: var(--gray-50); border-bottom: 1px solid var(--gray-200); padding: 0.9rem 1.5rem; }
+    .trust-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+    .trust-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-weight: 600; color: var(--gray-800); }
+    .trust-icon { font-size: 1.1rem; }
+
+    /* SECTIONS */
+    section { padding: 4rem 1.5rem; }
+    .section-title { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 800; margin-bottom: 0.5rem; }
+    .section-sub { color: var(--gray-600); font-size: 1rem; margin-bottom: 2.5rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* PRODUCTS */
+    #produits { background: var(--white); }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .product-card { border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; background: var(--white); }
+    .product-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .product-card.hero-product { border: 2px solid var(--lime); position: relative; }
+    .hero-badge-card { position: absolute; top: 12px; left: 12px; background: var(--lime); color: var(--green); font-size: 0.7rem; font-weight: 800; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 6px; letter-spacing: 0.5px; z-index: 2; }
+    .bundle-badge { position: absolute; top: 12px; left: 12px; background: #ff6b00; color: white; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 6px; z-index: 2; }
+    .product-img { width: 100%; height: 200px; object-fit: cover; background: var(--gray-100); }
+    .product-body { padding: 1.2rem; }
+    .product-name { font-size: 0.98rem; font-weight: 700; margin-bottom: 0.4rem; line-height: 1.3; }
+    .product-desc { font-size: 0.85rem; color: var(--gray-600); margin-bottom: 0.9rem; line-height: 1.5; }
+    .product-features { list-style: none; margin-bottom: 1rem; }
+    .product-features li { font-size: 0.82rem; color: var(--gray-800); padding: 0.15rem 0; display: flex; align-items: flex-start; gap: 0.4rem; }
+    .product-features li::before { content: '✓'; color: var(--green-light); font-weight: 700; flex-shrink: 0; margin-top: 0.05rem; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 1rem; border-top: 1px solid var(--gray-100); padding-top: 1rem; }
+    .price-block { display: flex; align-items: baseline; gap: 0.5rem; }
+    .price { font-size: 1.3rem; font-weight: 800; color: var(--green); }
+    .price-compare { font-size: 0.9rem; color: var(--gray-600); text-decoration: line-through; }
+    .add-to-cart { background: var(--green); color: var(--white); border: none; border-radius: 8px; padding: 0.6rem 1.1rem; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: background 0.15s, transform 0.15s; white-space: nowrap; }
+    .add-to-cart:hover { background: var(--green-light); transform: scale(1.04); }
+    .delivery-tag { font-size: 0.75rem; color: var(--green-light); font-weight: 600; margin-top: 0.4rem; }
+
+    /* WHY SECTION */
+    #pourquoi { background: var(--gray-50); }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
+    .why-card { background: var(--white); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); }
+    .why-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .why-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .why-desc { font-size: 0.875rem; color: var(--gray-600); }
+
+    /* EMAIL CAPTURE */
+    #newsletter { background: var(--green); color: var(--white); text-align: center; }
+    #newsletter .section-title { color: var(--white); }
+    #newsletter .section-sub { color: rgba(255,255,255,0.75); }
+    .email-form { display: flex; max-width: 480px; margin: 0 auto; gap: 0; }
+    .email-input { flex: 1; padding: 0.85rem 1.2rem; border: none; border-radius: 10px 0 0 10px; font-size: 1rem; outline: none; }
+    .email-submit { background: var(--lime); color: var(--green); border: none; padding: 0.85rem 1.5rem; font-weight: 800; font-size: 0.95rem; cursor: pointer; border-radius: 0 10px 10px 0; white-space: nowrap; transition: opacity 0.15s; }
+    .email-submit:hover { opacity: 0.9; }
+    .email-note { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 0.8rem; }
+    .email-success { display: none; color: var(--lime); font-weight: 700; font-size: 1.1rem; margin-top: 1rem; }
+
+    /* FOOTER */
+    footer { background: var(--gray-900); color: rgba(255,255,255,0.7); padding: 3rem 1.5rem; font-size: 0.875rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2.5rem; }
+    .footer-brand .logo { font-size: 1.3rem; }
+    .footer-brand p { margin-top: 0.8rem; line-height: 1.7; color: rgba(255,255,255,0.55); font-size: 0.83rem; }
+    .footer-col h4 { color: var(--white); font-size: 0.9rem; font-weight: 700; margin-bottom: 0.8rem; }
+    .footer-col a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; margin-bottom: 0.4rem; font-size: 0.83rem; transition: color 0.15s; }
+    .footer-col a:hover { color: var(--lime); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.45); }
+    .footstats-link { display: flex; align-items: center; gap: 0.5rem; color: var(--lime); text-decoration: none; font-weight: 700; font-size: 0.85rem; }
+
+    /* LEGAL PAGES */
+    .legal-section { display: none; padding: 4rem 1.5rem; }
+    .legal-section.active { display: block; }
+    .legal-section h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem; }
+    .legal-section h3 { font-size: 1rem; font-weight: 700; margin: 1.5rem 0 0.5rem; }
+    .legal-section p, .legal-section li { font-size: 0.9rem; color: var(--gray-800); line-height: 1.8; margin-bottom: 0.5rem; }
+    .legal-section ul { padding-left: 1.5rem; }
+    .back-btn { background: var(--green); color: white; border: none; border-radius: 8px; padding: 0.6rem 1.2rem; font-weight: 600; cursor: pointer; margin-bottom: 2rem; font-size: 0.9rem; }
+
+    /* CART MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 200; align-items: flex-start; justify-content: flex-end; padding: 1rem; }
+    .modal-overlay.open { display: flex; }
+    .cart-modal { background: var(--white); border-radius: var(--radius); width: 100%; max-width: 420px; max-height: 90vh; overflow-y: auto; box-shadow: var(--shadow-lg); margin-top: 70px; }
+    .cart-header { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--gray-200); }
+    .cart-header h3 { font-size: 1.1rem; font-weight: 800; }
+    .close-btn { background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--gray-600); }
+    .cart-items { padding: 1rem 1.5rem; min-height: 80px; }
+    .cart-empty { text-align: center; padding: 2rem 0; color: var(--gray-600); font-size: 0.9rem; }
+    .cart-item { display: flex; align-items: flex-start; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid var(--gray-100); }
+    .cart-item-img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; background: var(--gray-100); flex-shrink: 0; }
+    .cart-item-info { flex: 1; min-width: 0; }
+    .cart-item-name { font-size: 0.85rem; font-weight: 600; line-height: 1.3; margin-bottom: 0.2rem; }
+    .cart-item-price { font-size: 0.85rem; font-weight: 700; color: var(--green); }
+    .cart-item-qty { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.4rem; }
+    .qty-btn { background: var(--gray-100); border: none; border-radius: 4px; width: 24px; height: 24px; font-size: 1rem; cursor: pointer; font-weight: 700; }
+    .cart-item-qty span { font-size: 0.85rem; font-weight: 600; min-width: 1.5rem; text-align: center; }
+    .remove-item { background: none; border: none; color: var(--gray-600); cursor: pointer; font-size: 0.75rem; margin-left: auto; padding: 0.25rem; flex-shrink: 0; }
+    .cart-footer { padding: 1.2rem 1.5rem; border-top: 1px solid var(--gray-200); }
+    .cart-total { display: flex; justify-content: space-between; align-items: center; font-size: 1rem; font-weight: 800; margin-bottom: 1rem; }
+    .checkout-btn { width: 100%; background: var(--green); color: white; border: none; border-radius: 10px; padding: 1rem; font-size: 1rem; font-weight: 800; cursor: pointer; transition: background 0.15s; }
+    .checkout-btn:hover { background: var(--green-light); }
+    .cart-note { font-size: 0.78rem; color: var(--gray-600); text-align: center; margin-top: 0.8rem; }
+
+    /* CHECKOUT MODAL */
+    .checkout-modal { background: var(--white); border-radius: var(--radius); width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto; box-shadow: var(--shadow-lg); margin-top: 60px; }
+    .checkout-form { padding: 1.5rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem; color: var(--gray-800); }
+    .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--gray-200); border-radius: 8px; font-size: 0.95rem; font-family: inherit; outline: none; transition: border-color 0.15s; }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--green); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .order-summary { background: var(--gray-50); border-radius: 8px; padding: 1rem; margin-bottom: 1.2rem; font-size: 0.85rem; }
+    .order-summary h4 { font-weight: 700; margin-bottom: 0.6rem; }
+    .order-line { display: flex; justify-content: space-between; margin-bottom: 0.3rem; }
+    .order-total { display: flex; justify-content: space-between; font-weight: 800; margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px solid var(--gray-200); font-size: 0.95rem; }
+    .shopify-note { background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 0.8rem 1rem; font-size: 0.82rem; margin-bottom: 1rem; color: #856404; }
+    .shopify-note strong { display: block; margin-bottom: 0.2rem; }
+    .submit-order { width: 100%; background: var(--green); color: white; border: none; border-radius: 10px; padding: 1rem; font-size: 1rem; font-weight: 800; cursor: pointer; transition: background 0.15s; margin-top: 0.5rem; }
+    .submit-order:hover { background: var(--green-light); }
+    .order-success { display: none; text-align: center; padding: 2rem 1.5rem; }
+    .order-success h3 { color: var(--green); font-size: 1.3rem; margin-bottom: 0.8rem; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .email-form { flex-direction: column; }
+      .email-input { border-radius: 10px; }
+      .email-submit { border-radius: 10px; }
+      .trust-inner { gap: 1rem; }
+      .hero-stats { gap: 1.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .cart-modal, .checkout-modal { max-width: 100%; border-radius: var(--radius) var(--radius) 0 0; margin-top: auto; }
+      .modal-overlay { align-items: flex-end; padding: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo" onclick="showMain(); return false;">Foot<span>Perf</span></a>
+    <div class="nav-links">
+      <a href="#produits">Produits</a>
+      <a href="#pourquoi">Pourquoi FootPerf</a>
+      <a href="https://www.youtube.com/@FootStats" target="_blank" rel="noopener">FootStats ↗</a>
+    </div>
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Mon panier <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">⚡ Coupe du Monde 2026 — Reprends l'entraînement</div>
+      <h1>L'équipement qui fait <em>vraiment</em> la différence</h1>
+      <p>Matériel d'entraînement football pour joueurs sérieux. Vitesse, agilité, récupération — sans le prix d'un pro.</p>
+      <div class="hero-cta">
+        <a href="#produits" class="btn-primary">Voir les produits →</a>
+        <a href="https://www.youtube.com/@FootStats" target="_blank" rel="noopener" class="btn-outline">Chaîne FootStats ↗</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>3-5j</strong><span>Livraison France</span></div>
+        <div class="hero-stat"><strong>14j</strong><span>Satisfait ou remboursé</span></div>
+        <div class="hero-stat"><strong>≥70%</strong><span>Marge qualité/prix</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-inner">
+      <div class="trust-item"><span class="trust-icon">🚚</span> Livraison France 3-5 jours</div>
+      <div class="trust-item"><span class="trust-icon">🔒</span> Paiement 100% sécurisé</div>
+      <div class="trust-item"><span class="trust-icon">↩️</span> Retours gratuits 14 jours</div>
+      <div class="trust-item"><span class="trust-icon">🏆</span> Produits IP-safe, aucune contrefaçon</div>
+    </div>
+  </div>
+
+  <!-- PRODUITS -->
+  <section id="produits">
+    <div class="container">
+      <h2 class="section-title">Notre catalogue</h2>
+      <p class="section-sub">Entraîne-toi mieux, progresse plus vite. Tous nos produits sont génériques et certifiés IP-safe.</p>
+      <div class="products-grid" id="productsGrid">
+        <!-- Rempli par JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- POURQUOI FOOTPERF -->
+  <section id="pourquoi">
+    <div class="container">
+      <h2 class="section-title">Pourquoi FootPerf ?</h2>
+      <p class="section-sub">On a conçu ce que Decathlon n'a pas : une boutique 100% dédiée au joueur qui veut progresser.</p>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">⚡</div>
+          <div class="why-title">Performance immédiate</div>
+          <div class="why-desc">Nos kits sont conçus pour des gains mesurables en 2-4 semaines : vitesse, agilité, coordination.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🚚</div>
+          <div class="why-title">Livraison rapide</div>
+          <div class="why-desc">Expédié depuis nos entrepôts européens — reçu en 3-5 jours en France. Pas d'attente depuis la Chine.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">💰</div>
+          <div class="why-title">Rapport qualité/prix honnête</div>
+          <div class="why-desc">Les mêmes équipements, sans payer la marque. Dès 12,90€ pour un vrai matériel d'entraînement.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🔒</div>
+          <div class="why-title">Aucune contrefaçon</div>
+          <div class="why-desc">Tous nos produits sont génériques et IP-safe. Pas de faux maillots, pas de logos de clubs.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🎥</div>
+          <div class="why-title">Inspiré par FootStats</div>
+          <div class="why-desc">FootPerf est la boutique officielle de la chaîne YouTube FootStats — recommandations vérifiées par des passionnés.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">↩️</div>
+          <div class="why-title">Satisfait ou remboursé</div>
+          <div class="why-desc">14 jours pour changer d'avis, sans question. Retour simple et prise en charge rapide.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMAIL CAPTURE -->
+  <section id="newsletter">
+    <div class="container">
+      <h2 class="section-title">Conseils d'entraînement + offres exclusives</h2>
+      <p class="section-sub">Rejoins +2 000 joueurs qui progressent avec nos conseils et nos bons plans équipements.</p>
+      <form class="email-form" id="emailForm" onsubmit="handleEmailCapture(event)">
+        <input type="email" class="email-input" id="emailInput" placeholder="ton@email.com" required>
+        <button type="submit" class="email-submit">S'inscrire →</button>
+      </form>
+      <div class="email-success" id="emailSuccess">✅ Parfait ! Vérifie ta boîte mail.</div>
+      <p class="email-note">Pas de spam. Désabonnement en 1 clic à tout moment.</p>
+    </div>
+  </section>
+
+</div><!-- end mainContent -->
+
+<!-- LEGAL SECTIONS (cachées par défaut) -->
+<div id="legalCgv" class="legal-section container">
+  <button class="back-btn" onclick="showMain()">← Retour à la boutique</button>
+  <h2>Conditions Générales de Vente</h2>
+  <p><strong>Vendeur :</strong> FootPerf — à compléter avec SIRET et adresse du vendeur (Fred)</p>
+  <h3>1. Objet</h3>
+  <p>Les présentes conditions générales de vente régissent les relations contractuelles entre FootPerf et tout acheteur souhaitant acquérir les produits proposés sur ce site.</p>
+  <h3>2. Produits</h3>
+  <p>Les produits vendus sont des accessoires d'entraînement sportif à usage général. Ils ne constituent pas des dispositifs médicaux.</p>
+  <h3>3. Prix</h3>
+  <p>Les prix sont indiqués en euros TTC. FootPerf se réserve le droit de modifier ses prix à tout moment.</p>
+  <h3>4. Commande</h3>
+  <p>La commande est validée après confirmation du paiement. Un email de confirmation est envoyé à l'adresse fournie.</p>
+  <h3>5. Livraison</h3>
+  <p>Livraison en France métropolitaine sous 3-7 jours ouvrés. Les délais sont indicatifs. En cas de retard exceptionnel, le client sera informé.</p>
+  <h3>6. Droit de rétractation (14 jours)</h3>
+  <p>Conformément à l'article L221-18 du Code de la consommation, le client dispose d'un délai de 14 jours à compter de la réception du bien pour exercer son droit de rétractation, sans avoir à justifier de motifs ni à payer de pénalités. Les frais de retour sont à la charge du vendeur pour tout produit défectueux ou non-conforme.</p>
+  <h3>7. Propriété intellectuelle</h3>
+  <p>Tous les éléments du site (textes, images, logo FootPerf) sont la propriété de FootPerf. Les produits vendus sont génériques et ne portent aucune marque déposée.</p>
+  <h3>8. Données personnelles</h3>
+  <p>Les données collectées sont utilisées uniquement pour le traitement des commandes et l'envoi de communications commerciales. Conformément au RGPD, vous pouvez exercer vos droits en contactant : contact@footperf.fr</p>
+  <h3>9. Litiges</h3>
+  <p>En cas de litige non résolu à l'amiable, le consommateur peut recourir au service de médiation de la consommation. Tribunal compétent : France.</p>
+  <p><em>Dernière mise à jour : Juin 2026</em></p>
+</div>
+
+<div id="legalLivraison" class="legal-section container">
+  <button class="back-btn" onclick="showMain()">← Retour à la boutique</button>
+  <h2>Livraison et Retours</h2>
+  <h3>Délais de livraison</h3>
+  <p>Tous nos produits sont expédiés depuis des entrepôts européens (Allemagne, Pays-Bas). Le délai de livraison standard en France métropolitaine est de <strong>3 à 7 jours ouvrés</strong> après confirmation du paiement.</p>
+  <h3>Frais de livraison</h3>
+  <p>Livraison offerte à partir de 45€ d'achat. En dessous : 3,90€ forfaitaires.</p>
+  <h3>Suivi de commande</h3>
+  <p>Un numéro de suivi vous est envoyé par email dans les 24-48h après expédition.</p>
+  <h3>Politique de retour</h3>
+  <p>Vous disposez de <strong>14 jours</strong> à compter de la réception pour retourner votre commande, sans motif. Le produit doit être dans son état d'origine, non utilisé.</p>
+  <ul>
+    <li>Contactez-nous : contact@footperf.fr</li>
+    <li>Nous vous envoyons une étiquette de retour prépayée</li>
+    <li>Remboursement intégral sous 5-7 jours ouvrés après réception du retour</li>
+  </ul>
+  <h3>Produit endommagé ou non-conforme</h3>
+  <p>Si votre produit arrive endommagé, prenez une photo et envoyez-la à contact@footperf.fr. Remplacement ou remboursement immédiat.</p>
+</div>
+
+<div id="legalMentions" class="legal-section container">
+  <button class="back-btn" onclick="showMain()">← Retour à la boutique</button>
+  <h2>Mentions Légales</h2>
+  <h3>Éditeur du site</h3>
+  <p><strong>FootPerf</strong><br>
+  Adresse : à compléter avec SIRET et adresse du vendeur<br>
+  Email : contact@footperf.fr<br>
+  SIRET : en cours d'enregistrement</p>
+  <h3>Hébergement</h3>
+  <p>Ce site est hébergé par <strong>GitHub Pages</strong> (GitHub Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA).</p>
+  <h3>Propriété intellectuelle</h3>
+  <p>Le contenu de ce site (textes, images de marque FootPerf, structure) est protégé. Les photos de produits sont issues de Pexels (licence libre). Aucun logo ou marque tierce n'est reproduit sans autorisation.</p>
+  <h3>Cookies</h3>
+  <p>Ce site utilise uniquement un cookie de session pour le panier (stockage local). Aucun cookie tiers, aucune publicité tierce. Pas de collecte d'analytics.</p>
+  <h3>Médiation</h3>
+  <p>En cas de litige, vous pouvez recourir gratuitement au médiateur de la consommation : <a href="https://www.mediateur-consommation.fr" target="_blank">www.mediateur-consommation.fr</a></p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo" onclick="showMain(); return false;" style="color:white">Foot<span style="color:var(--lime)">Perf</span></a>
+        <p>Équipements d'entraînement football pour joueurs amateurs sérieux. Produits génériques IP-safe, livrés depuis l'Europe en 3-5 jours.</p>
+        <a href="https://www.youtube.com/@FootStats" target="_blank" rel="noopener" class="footstats-link" style="margin-top:1rem;display:inline-flex">📺 Chaîne FootStats</a>
+      </div>
+      <div class="footer-col">
+        <h4>Boutique</h4>
+        <a href="#produits" onclick="showMain()">Tous les produits</a>
+        <a href="#pourquoi" onclick="showMain()">Pourquoi FootPerf</a>
+        <a href="#newsletter" onclick="showMain()">Offres exclusives</a>
+      </div>
+      <div class="footer-col">
+        <h4>Informations</h4>
+        <a href="#" onclick="showLegal('legalLivraison'); return false;">Livraison & Retours</a>
+        <a href="#" onclick="showLegal('legalCgv'); return false;">CGV</a>
+        <a href="#" onclick="showLegal('legalMentions'); return false;">Mentions légales</a>
+        <a href="mailto:contact@footperf.fr">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 FootPerf. Tous droits réservés. Aucun logo ou marque de club n'est utilisé.</p>
+      <p>Paiement sécurisé · RGPD · Mentions légales</p>
+    </div>
+  </div>
+</footer>
+
+<!-- PANIER MODAL -->
+<div class="modal-overlay" id="cartOverlay" onclick="closeCartOutside(event)">
+  <div class="cart-modal" id="cartModal">
+    <div class="cart-header">
+      <h3>🛒 Mon panier</h3>
+      <button class="close-btn" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">Ton panier est vide.</div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cartTotal">0,00€</span>
+      </div>
+      <button class="checkout-btn" onclick="openCheckout()">Valider la commande →</button>
+      <p class="cart-note">Livraison 3-5j · Retour 14j · Paiement sécurisé</p>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkoutOverlay" onclick="closeCheckoutOutside(event)">
+  <div class="checkout-modal" id="checkoutModal">
+    <div class="cart-header">
+      <h3>Finaliser la commande</h3>
+      <button class="close-btn" onclick="closeCheckout()">✕</button>
+    </div>
+    <div class="checkout-form">
+      <div class="shopify-note" id="shopifyNote">
+        <strong>⚙️ Boutique en finalisation</strong>
+        Pour commander maintenant, laisse ton email et ta commande — nous te recontactons sous 2h pour finaliser le paiement.
+      </div>
+      <div id="orderSummaryDiv"></div>
+      <form id="checkoutFormEl" onsubmit="handleCheckout(event)">
+        <div class="form-row">
+          <div class="form-group"><label>Prénom *</label><input type="text" id="firstName" required placeholder="Lucas"></div>
+          <div class="form-group"><label>Nom *</label><input type="text" id="lastName" required placeholder="Martin"></div>
+        </div>
+        <div class="form-group"><label>Email *</label><input type="email" id="orderEmail" required placeholder="lucas@exemple.com"></div>
+        <div class="form-group"><label>Téléphone</label><input type="tel" id="orderPhone" placeholder="06 12 34 56 78"></div>
+        <div class="form-group"><label>Adresse *</label><input type="text" id="orderAddress" required placeholder="12 rue de la Paix"></div>
+        <div class="form-row">
+          <div class="form-group"><label>Code postal *</label><input type="text" id="orderZip" required placeholder="75001"></div>
+          <div class="form-group"><label>Ville *</label><input type="text" id="orderCity" required placeholder="Paris"></div>
+        </div>
+        <button type="submit" class="submit-order">Confirmer la commande →</button>
+        <p class="cart-note" style="text-align:center;margin-top:0.8rem">En validant, tu acceptes nos <a href="#" onclick="showLegal('legalCgv');closeCheckout();return false;" style="color:var(--green)">CGV</a>.</p>
+      </form>
+      <div class="order-success" id="orderSuccess">
+        <div style="font-size:3rem;margin-bottom:0.8rem">✅</div>
+        <h3>Commande reçue !</h3>
+        <p>Merci <span id="thankName"></span>. Tu recevras un email de confirmation sous quelques minutes. Notre équipe te contacte rapidement pour finaliser le paiement.</p>
+        <p style="margin-top:1rem;font-size:0.85rem;color:#666">Livraison estimée : 3-5 jours après paiement confirmé.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// CATALOGUE PRODUITS
+// ============================================================
+const products = [
+  {
+    id: 'fp-kit',
+    name: 'Kit Pro Entraînement Football',
+    shortName: 'Kit Pro Entraînement',
+    desc: 'Améliore ta vitesse et ton agilité en 4 semaines. Tout ce dont tu as besoin dans un seul sac.',
+    features: ['Échelle d\'agilité 6m (12 échelons)', '20 cônes de marquage colorés', 'Parachute de résistance', 'Sac de transport inclus'],
+    price: 34.90,
+    compareAt: 49.90,
+    img: 'https://images.pexels.com/photos/1618269/pexels-photo-1618269.jpeg?auto=compress&cs=tinysrgb&w=600',
+    isHero: true,
+    badge: '⭐ Best-seller'
+  },
+  {
+    id: 'fp-cones',
+    name: 'Set 40 Cônes de Marquage Football',
+    shortName: '40 Cônes de Marquage',
+    desc: 'Trace ton terrain en 60 secondes. 40 cônes disc 4 couleurs pour tous tes ateliers.',
+    features: ['40 cônes disc ultra-plats', '4 couleurs (rouge, jaune, bleu, vert)', 'Sac de transport inclus', 'Compatible tous terrains'],
+    price: 16.90,
+    compareAt: 24.90,
+    img: 'https://images.pexels.com/photos/47730/the-ball-stadion-football-the-pitch-47730.jpeg?auto=compress&cs=tinysrgb&w=600',
+    isHero: false,
+    badge: null
+  },
+  {
+    id: 'fp-shin',
+    name: 'Protège-Tibias Football Adulte',
+    shortName: 'Protège-Tibias Pro',
+    desc: 'Protection maximale, poids minimal. En EVA haute densité, taille universelle adulte.',
+    features: ['Matière EVA haute densité', 'Taille universelle adulte', 'Poids < 80g la paire', 'Fixation chaussette standard'],
+    price: 14.90,
+    compareAt: 22.90,
+    img: 'https://images.pexels.com/photos/1884574/pexels-photo-1884574.jpeg?auto=compress&cs=tinysrgb&w=600',
+    isHero: false,
+    badge: null
+  },
+  {
+    id: 'fp-roller',
+    name: 'Rouleau de Massage — Récupération Post-Match',
+    shortName: 'Rouleau de Massage',
+    desc: 'Récupère plus vite entre les matchs. Soulage les tensions des jambes et cuisses.',
+    features: ['Mousse EVA texturée haute densité', 'Longueur 33cm', 'Avant et après entraînement', 'Outil de bien-être sportif (non médical)'],
+    price: 22.90,
+    compareAt: 34.90,
+    img: 'https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=600',
+    isHero: false,
+    badge: null
+  },
+  {
+    id: 'fp-bag',
+    name: 'Sac Filet de Ballons Football',
+    shortName: 'Sac Filet Ballons',
+    desc: 'Transporte 15 ballons d\'un seul geste. Bandoulière réglable incluse.',
+    features: ['Capacité : 15 ballons taille 5', 'Nylon résistant', 'Bandoulière réglable', 'Léger (150g vide)'],
+    price: 12.90,
+    compareAt: 19.90,
+    img: 'https://images.pexels.com/photos/1350720/pexels-photo-1350720.jpeg?auto=compress&cs=tinysrgb&w=600',
+    isHero: false,
+    badge: null
+  },
+  {
+    id: 'fp-pack',
+    name: 'Pack Pro FootPerf — Kit + 40 Cônes + Protège-Tibias',
+    shortName: 'Pack Pro FootPerf',
+    desc: 'Tout ce dont tu as besoin en 1 commande. Économise 8€ vs achat séparé.',
+    features: ['Kit Entraînement Pro (échelle + parachute)', '40 Cônes de Marquage 4 couleurs', 'Protège-Tibias Adulte EVA', '🎯 Économise 8€ vs séparé'],
+    price: 57.90,
+    compareAt: 79.90,
+    img: 'https://images.pexels.com/photos/1618269/pexels-photo-1618269.jpeg?auto=compress&cs=tinysrgb&w=600',
+    isHero: false,
+    badge: '💰 Meilleure valeur'
+  }
+];
+
+// ============================================================
+// RENDU PRODUITS
+// ============================================================
+function renderProducts() {
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = products.map(p => `
+    <div class="product-card ${p.isHero ? 'hero-product' : ''}" id="card-${p.id}">
+      ${p.isHero ? `<div class="hero-badge-card">${p.badge}</div>` : ''}
+      ${p.badge && !p.isHero ? `<div class="bundle-badge">${p.badge}</div>` : ''}
+      <img src="${p.img}" alt="${p.name}" class="product-img" loading="lazy" onerror="this.style.background='#e9ecef';this.alt='Image produit'">
+      <div class="product-body">
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <ul class="product-features">
+          ${p.features.map(f => `<li>${f}</li>`).join('')}
+        </ul>
+        <p class="delivery-tag">🚚 Livraison France 3-5 jours</p>
+        <div class="product-footer">
+          <div class="price-block">
+            <span class="price">${p.price.toFixed(2).replace('.', ',')}€</span>
+            <span class="price-compare">${p.compareAt.toFixed(2).replace('.', ',')}€</span>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('${p.id}')">Ajouter →</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ============================================================
+// PANIER (localStorage)
+// ============================================================
+let cart = JSON.parse(localStorage.getItem('footperf_cart') || '[]');
+
+function saveCart() { localStorage.setItem('footperf_cart', JSON.stringify(cart)); }
+
+function updateCartCount() {
+  const total = cart.reduce((s, i) => s + i.qty, 0);
+  document.getElementById('cartCount').textContent = total;
+}
+
+function addToCart(id) {
+  const product = products.find(p => p.id === id);
+  const existing = cart.find(i => i.id === id);
+  if (existing) { existing.qty++; }
+  else { cart.push({ id, name: product.shortName, price: product.price, img: product.img, qty: 1 }); }
+  saveCart();
+  updateCartCount();
+  renderCartItems();
+  // Flash feedback
+  const card = document.getElementById('card-' + id);
+  if (card) { card.style.transform = 'scale(0.98)'; setTimeout(() => card.style.transform = '', 200); }
+  openCart();
+}
+
+function renderCartItems() {
+  const el = document.getElementById('cartItems');
+  const footer = document.getElementById('cartFooter');
+  if (cart.length === 0) {
+    el.innerHTML = '<div class="cart-empty">Ton panier est vide.</div>';
+    footer.style.display = 'none';
+    return;
+  }
+  footer.style.display = 'block';
+  el.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <img src="${item.img}" alt="${item.name}" class="cart-item-img" onerror="this.style.background='#e9ecef'">
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">${(item.price * item.qty).toFixed(2).replace('.', ',')}€</div>
+        <div class="cart-item-qty">
+          <button class="qty-btn" onclick="changeQty('${item.id}', -1)">−</button>
+          <span>${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+        </div>
+      </div>
+      <button class="remove-item" onclick="removeItem('${item.id}')" title="Supprimer">✕</button>
+    </div>
+  `).join('');
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  document.getElementById('cartTotal').textContent = total.toFixed(2).replace('.', ',') + '€';
+}
+
+function changeQty(id, delta) {
+  const item = cart.find(i => i.id === id);
+  if (!item) return;
+  item.qty = Math.max(0, item.qty + delta);
+  if (item.qty === 0) cart = cart.filter(i => i.id !== id);
+  saveCart(); updateCartCount(); renderCartItems();
+}
+
+function removeItem(id) {
+  cart = cart.filter(i => i.id !== id);
+  saveCart(); updateCartCount(); renderCartItems();
+}
+
+function openCart() { document.getElementById('cartOverlay').classList.add('open'); renderCartItems(); }
+function closeCart() { document.getElementById('cartOverlay').classList.remove('open'); }
+function closeCartOutside(e) { if (e.target === document.getElementById('cartOverlay')) closeCart(); }
+
+// ============================================================
+// CHECKOUT
+// ============================================================
+function openCheckout() {
+  closeCart();
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const delivery = total >= 45 ? 0 : 3.90;
+  const summaryHTML = `
+    <div class="order-summary">
+      <h4>Récapitulatif</h4>
+      ${cart.map(i => `<div class="order-line"><span>${i.name} ×${i.qty}</span><span>${(i.price*i.qty).toFixed(2).replace('.', ',')}€</span></div>`).join('')}
+      <div class="order-line"><span>Livraison</span><span>${delivery === 0 ? 'Offerte 🎉' : delivery.toFixed(2).replace('.', ',') + '€'}</span></div>
+      <div class="order-total"><span>Total</span><span>${(total + delivery).toFixed(2).replace('.', ',')}€</span></div>
+    </div>`;
+  document.getElementById('orderSummaryDiv').innerHTML = summaryHTML;
+  document.getElementById('checkoutFormEl').style.display = 'block';
+  document.getElementById('orderSuccess').style.display = 'none';
+  document.getElementById('checkoutOverlay').classList.add('open');
+}
+
+function closeCheckout() { document.getElementById('checkoutOverlay').classList.remove('open'); }
+function closeCheckoutOutside(e) { if (e.target === document.getElementById('checkoutOverlay')) closeCheckout(); }
+
+function handleCheckout(e) {
+  e.preventDefault();
+  const firstName = document.getElementById('firstName').value;
+  const lastName = document.getElementById('lastName').value;
+  const email = document.getElementById('orderEmail').value;
+  const phone = document.getElementById('orderPhone').value;
+  const address = document.getElementById('orderAddress').value;
+  const zip = document.getElementById('orderZip').value;
+  const city = document.getElementById('orderCity').value;
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const delivery = total >= 45 ? 0 : 3.90;
+  const orderDetails = cart.map(i => `${i.name} ×${i.qty} = ${(i.price*i.qty).toFixed(2)}€`).join('\n');
+  // Simulate order (in prod: POST to Formspree / Shopify / n8n webhook)
+  console.log('ORDER:', { firstName, lastName, email, phone, address, zip, city, orderDetails, total: (total+delivery).toFixed(2) });
+  // Show success
+  document.getElementById('checkoutFormEl').style.display = 'none';
+  document.getElementById('orderSummaryDiv').style.display = 'none';
+  document.getElementById('shopifyNote').style.display = 'none';
+  document.getElementById('orderSuccess').style.display = 'block';
+  document.getElementById('thankName').textContent = firstName;
+  // Clear cart
+  cart = [];
+  saveCart();
+  updateCartCount();
+}
+
+// ============================================================
+// EMAIL CAPTURE
+// ============================================================
+function handleEmailCapture(e) {
+  e.preventDefault();
+  document.getElementById('emailForm').style.display = 'none';
+  document.getElementById('emailSuccess').style.display = 'block';
+  // In prod: POST to Klaviyo / Shopify Email / Formspree
+  console.log('EMAIL CAPTURE:', document.getElementById('emailInput').value);
+}
+
+// ============================================================
+// NAVIGATION PAGES LÉGALES
+// ============================================================
+function showMain() {
+  document.getElementById('mainContent').style.display = '';
+  ['legalCgv','legalLivraison','legalMentions'].forEach(id => {
+    document.getElementById(id).classList.remove('active');
+  });
+  window.scrollTo(0, 0);
+}
+
+function showLegal(pageId) {
+  document.getElementById('mainContent').style.display = 'none';
+  ['legalCgv','legalLivraison','legalMentions'].forEach(id => {
+    document.getElementById(id).classList.remove('active');
+  });
+  document.getElementById(pageId).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ============================================================
+// INIT
+// ============================================================
+renderProducts();
+updateCartCount();
+</script>
+</body>
+</html>
