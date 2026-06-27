@@ -40,6 +40,7 @@
     .nav-links { display: flex; gap: 1.5rem; }
     .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
     .nav-links a:hover { color: var(--lime); }
+    .mobile-cta-nav { display: none; background: var(--lime); color: var(--green); text-decoration: none; font-weight: 800; font-size: 0.8rem; padding: 0.5rem 0.85rem; border-radius: 8px; margin-left: auto; margin-right: 0.6rem; white-space: nowrap; }
     .cart-btn { background: var(--lime); color: var(--green); border: none; border-radius: 8px; padding: 0.5rem 1rem; font-weight: 700; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; transition: transform 0.15s; }
     .cart-btn:hover { transform: scale(1.05); }
     .cart-count { background: var(--red); color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; font-weight: 700; }
@@ -184,6 +185,7 @@
     /* RESPONSIVE */
     @media (max-width: 768px) {
       .nav-links { display: none; }
+      .mobile-cta-nav { display: inline-block; }
       .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .email-form { flex-direction: column; }
       .email-input { border-radius: 10px; }
@@ -207,8 +209,9 @@
     <div class="nav-links">
       <a href="#produits">Produits</a>
       <a href="#pourquoi">Pourquoi FootPerf</a>
-      <a href="https://www.youtube.com/@FootStats2026Fr" target="_blank" rel="noopener">FootStats ↗</a>
+      <a href="#newsletter">Offre VIP</a>
     </div>
+    <a href="#newsletter" class="mobile-cta-nav">Offre VIP -10%</a>
     <button class="cart-btn" onclick="openCart()">
       🛒 Mon panier <span class="cart-count" id="cartCount">0</span>
     </button>
@@ -225,13 +228,13 @@
       <h1>L'équipement qui fait <em>vraiment</em> la différence</h1>
       <p>Matériel d'entraînement football pour joueurs sérieux. Vitesse, agilité, récupération — sans le prix d'un pro.</p>
       <div class="hero-cta">
-        <a href="#produits" class="btn-primary">Voir les produits →</a>
-        <a href="https://www.youtube.com/@FootStats2026Fr" target="_blank" rel="noopener" class="btn-outline">Chaîne FootStats ↗</a>
+        <a href="#newsletter" class="btn-primary">Rejoindre la liste VIP — -10% à l'ouverture →</a>
+        <a href="https://itachiuchiha976.github.io/comparateur-ia" target="_blank" rel="noopener" class="btn-outline">Comparer les outils IA sport ↗</a>
       </div>
       <div class="hero-stats">
         <div class="hero-stat"><strong>3-5j</strong><span>Livraison France</span></div>
         <div class="hero-stat"><strong>14j</strong><span>Satisfait ou remboursé</span></div>
-        <div class="hero-stat"><strong>≥70%</strong><span>Marge qualité/prix</span></div>
+        <div class="hero-stat"><strong>6</strong><span>Produits sélectionnés</span></div>
       </div>
     </div>
   </section>
@@ -240,7 +243,7 @@
   <div class="trust-bar">
     <div class="trust-inner">
       <div class="trust-item"><span class="trust-icon">🚚</span> Livraison France 3-5 jours</div>
-      <div class="trust-item"><span class="trust-icon">🔒</span> Paiement 100% sécurisé</div>
+      <div class="trust-item"><span class="trust-icon">🚀</span> Ouverture imminente — liste VIP ouverte</div>
       <div class="trust-item"><span class="trust-icon">↩️</span> Retours gratuits 14 jours</div>
       <div class="trust-item"><span class="trust-icon">🏆</span> Produits IP-safe, aucune contrefaçon</div>
     </div>
@@ -300,14 +303,19 @@
   <!-- EMAIL CAPTURE -->
   <section id="newsletter">
     <div class="container">
-      <h2 class="section-title">Conseils d'entraînement + offres exclusives</h2>
-      <p class="section-sub">Rejoins +2 000 joueurs qui progressent avec nos conseils et nos bons plans équipements.</p>
-      <form class="email-form" id="emailForm" onsubmit="handleEmailCapture(event)">
-        <input type="email" class="email-input" id="emailInput" placeholder="ton@email.com" required>
-        <button type="submit" class="email-submit">S'inscrire →</button>
+      <h2 class="section-title">Liste VIP — sois prévenu(e) de l'ouverture <em style="color:var(--lime);font-style:normal">+ -10%</em></h2>
+      <p class="section-sub">Sois parmi les premiers à recevoir nos conseils d'entraînement et l'offre de lancement exclusive (-10% le jour de l'ouverture).</p>
+      <form class="email-form" id="emailForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="d97a8c73-b827-48bb-b437-e053a73fdb7e">
+        <input type="hidden" name="subject" value="FootPerf nouveau lead">
+        <input type="hidden" name="from_name" value="FootPerf">
+        <input type="hidden" name="source" value="footperf-newsletter">
+        <input type="checkbox" name="botcheck" style="display:none !important" tabindex="-1" autocomplete="off">
+        <input type="email" name="email" class="email-input" id="emailInput" placeholder="ton@email.com" required>
+        <button type="submit" class="email-submit">Rejoindre la liste VIP →</button>
       </form>
-      <div class="email-success" id="emailSuccess">✅ Parfait ! Vérifie ta boîte mail.</div>
-      <p class="email-note">Pas de spam. Désabonnement en 1 clic à tout moment.</p>
+      <div class="email-success" id="emailSuccess">✅ Merci ! Tu es sur la liste VIP — tu seras prévenu(e) à l'ouverture.</div>
+      <p class="email-note">Pas de spam. Désinscription en 1 clic. On t'écrit seulement pour l'ouverture et les bons plans.</p>
     </div>
   </section>
 
@@ -317,7 +325,7 @@
 <div id="legalCgv" class="legal-section container">
   <button class="back-btn" onclick="showMain()">← Retour à la boutique</button>
   <h2>Conditions Générales de Vente</h2>
-  <p><strong>Vendeur :</strong> FootPerf — à compléter avec SIRET et adresse du vendeur (Fred)</p>
+  <p><strong>Vendeur :</strong> FootPerf — Contact : contact@footperf.fr<!-- SIRET et adresse à renseigner avant la première vente --></p>
   <h3>1. Objet</h3>
   <p>Les présentes conditions générales de vente régissent les relations contractuelles entre FootPerf et tout acheteur souhaitant acquérir les produits proposés sur ce site.</p>
   <h3>2. Produits</h3>
@@ -364,9 +372,8 @@
   <h2>Mentions Légales</h2>
   <h3>Éditeur du site</h3>
   <p><strong>FootPerf</strong><br>
-  Adresse : à compléter avec SIRET et adresse du vendeur<br>
   Email : contact@footperf.fr<br>
-  SIRET : en cours d'enregistrement</p>
+  Boutique en cours d'ouverture — coordonnées complètes du vendeur (adresse et SIRET) publiées avant la première vente.<!-- Renseigner adresse + SIRET ici avant d'encaisser --></p>
   <h3>Hébergement</h3>
   <p>Ce site est hébergé par <strong>GitHub Pages</strong> (GitHub Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA).</p>
   <h3>Propriété intellectuelle</h3>
@@ -384,7 +391,7 @@
       <div class="footer-brand">
         <a href="#" class="logo" onclick="showMain(); return false;" style="color:white">Foot<span style="color:var(--lime)">Perf</span></a>
         <p>Équipements d'entraînement football pour joueurs amateurs sérieux. Produits génériques IP-safe, livrés depuis l'Europe en 3-5 jours.</p>
-        <a href="https://www.youtube.com/@FootStats2026Fr" target="_blank" rel="noopener" class="footstats-link" style="margin-top:1rem;display:inline-flex">📺 Chaîne FootStats</a>
+        <a href="#newsletter" class="footstats-link" style="margin-top:1rem;display:inline-flex">🚀 Rejoindre la liste VIP — -10% à l'ouverture</a>
       </div>
       <div class="footer-col">
         <h4>Boutique</h4>
@@ -402,7 +409,7 @@
     </div>
     <div class="footer-bottom">
       <p>© 2026 FootPerf. Tous droits réservés. Aucun logo ou marque de club n'est utilisé.</p>
-      <p>Paiement sécurisé · RGPD · Mentions légales</p>
+      <p>Ouverture imminente · RGPD · Mentions légales</p>
     </div>
   </div>
 </footer>
@@ -422,8 +429,8 @@
         <span>Total</span>
         <span id="cartTotal">0,00€</span>
       </div>
-      <button class="checkout-btn" onclick="openCheckout()">Valider la commande →</button>
-      <p class="cart-note">Livraison 3-5j · Retour 14j · Paiement sécurisé</p>
+      <button class="checkout-btn" onclick="openCheckout()">Réserver ma commande (accès prioritaire) →</button>
+      <p class="cart-note">Ouverture imminente · Aucun débit maintenant · Livraison 3-5j · Retour 14j</p>
     </div>
   </div>
 </div>
@@ -437,8 +444,8 @@
     </div>
     <div class="checkout-form">
       <div class="shopify-note" id="shopifyNote">
-        <strong>⚙️ Boutique en finalisation</strong>
-        Pour commander maintenant, laisse ton email et ta commande — nous te recontactons sous 2h pour finaliser le paiement.
+        <strong>⚙️ Boutique en cours d'ouverture</strong>
+        Laisse ton email et ta commande — on te recontacte sous 24h pour finaliser le paiement sécurisé. Aucun débit maintenant.
       </div>
       <div id="orderSummaryDiv"></div>
       <form id="checkoutFormEl" onsubmit="handleCheckout(event)">
@@ -458,9 +465,9 @@
       </form>
       <div class="order-success" id="orderSuccess">
         <div style="font-size:3rem;margin-bottom:0.8rem">✅</div>
-        <h3>Commande reçue !</h3>
-        <p>Merci <span id="thankName"></span>. Tu recevras un email de confirmation sous quelques minutes. Notre équipe te contacte rapidement pour finaliser le paiement.</p>
-        <p style="margin-top:1rem;font-size:0.85rem;color:#666">Livraison estimée : 3-5 jours après paiement confirmé.</p>
+        <h3>Demande reçue !</h3>
+        <p>Merci <span id="thankName"></span>. La boutique finalise son ouverture : on te recontacte sous 24h pour confirmer ta commande et le paiement sécurisé. Aucun débit pour l'instant.</p>
+        <p style="margin-top:1rem;font-size:0.85rem;color:#666">Livraison estimée : 3-5 jours après confirmation du paiement.</p>
       </div>
     </div>
   </div>
@@ -679,31 +686,94 @@ function handleCheckout(e) {
   const city = document.getElementById('orderCity').value;
   const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
   const delivery = total >= 45 ? 0 : 3.90;
-  const orderDetails = cart.map(i => `${i.name} ×${i.qty} = ${(i.price*i.qty).toFixed(2)}€`).join('\n');
-  // Simulate order (in prod: POST to Formspree / Shopify / n8n webhook)
-  console.log('ORDER:', { firstName, lastName, email, phone, address, zip, city, orderDetails, total: (total+delivery).toFixed(2) });
-  // Show success
-  document.getElementById('checkoutFormEl').style.display = 'none';
-  document.getElementById('orderSummaryDiv').style.display = 'none';
-  document.getElementById('shopifyNote').style.display = 'none';
-  document.getElementById('orderSuccess').style.display = 'block';
-  document.getElementById('thankName').textContent = firstName;
-  // Clear cart
-  cart = [];
-  saveCart();
-  updateCartCount();
+  const orderDetails = cart.map(i => `${i.name} ×${i.qty} = ${(i.price*i.qty).toFixed(2)}€`).join(' | ');
+  const btn = document.querySelector('#checkoutFormEl .submit-order');
+  const original = btn.textContent;
+  btn.textContent = 'Envoi...';
+  btn.disabled = true;
+
+  // Lead d'intention d'achat envoyé à Fred via Web3Forms (récontact manuel en attendant le paiement Stripe)
+  const fd = new FormData();
+  fd.append('access_key', 'd97a8c73-b827-48bb-b437-e053a73fdb7e');
+  fd.append('subject', 'FootPerf — Demande de commande (lead)');
+  fd.append('from_name', 'FootPerf');
+  fd.append('type', 'order_intent');
+  fd.append('source', 'footperf-checkout');
+  fd.append('prenom', firstName);
+  fd.append('nom', lastName);
+  fd.append('email', email);
+  fd.append('telephone', phone);
+  fd.append('adresse', address);
+  fd.append('code_postal', zip);
+  fd.append('ville', city);
+  fd.append('commande', orderDetails);
+  fd.append('total', (total + delivery).toFixed(2) + '€');
+
+  const showSuccess = () => {
+    document.getElementById('checkoutFormEl').style.display = 'none';
+    document.getElementById('orderSummaryDiv').style.display = 'none';
+    document.getElementById('shopifyNote').style.display = 'none';
+    document.getElementById('orderSuccess').style.display = 'block';
+    document.getElementById('thankName').textContent = firstName;
+    cart = [];
+    saveCart();
+    updateCartCount();
+  };
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json' },
+    body: fd
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.success) { showSuccess(); }
+    else {
+      btn.textContent = original;
+      btn.disabled = false;
+      alert("Ta demande n'a pas pu être envoyée. Réessaie ou écris-nous à contact@footperf.fr.");
+    }
+  })
+  .catch(() => {
+    btn.textContent = original;
+    btn.disabled = false;
+    alert("Connexion impossible pour le moment. Réessaie dans un instant ou écris à contact@footperf.fr.");
+  });
 }
 
 // ============================================================
 // EMAIL CAPTURE
 // ============================================================
-function handleEmailCapture(e) {
+// Capture email VIP via Web3Forms (AJAX, sans quitter la page)
+document.getElementById('emailForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  document.getElementById('emailForm').style.display = 'none';
-  document.getElementById('emailSuccess').style.display = 'block';
-  // In prod: POST to Klaviyo / Shopify Email / Formspree
-  console.log('EMAIL CAPTURE:', document.getElementById('emailInput').value);
-}
+  const form = e.target;
+  const btn = form.querySelector('.email-submit');
+  const original = btn.textContent;
+  btn.textContent = 'Inscription...';
+  btn.disabled = true;
+  fetch(form.action, {
+    method: 'POST',
+    headers: { 'Accept': 'application/json' },
+    body: new FormData(form)
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.success) {
+      form.style.display = 'none';
+      document.getElementById('emailSuccess').style.display = 'block';
+    } else {
+      btn.textContent = original;
+      btn.disabled = false;
+      alert("Oups, l'inscription n'a pas pu aboutir. Réessaie ou écris-nous à contact@footperf.fr.");
+    }
+  })
+  .catch(() => {
+    btn.textContent = original;
+    btn.disabled = false;
+    alert("Connexion impossible pour le moment. Réessaie dans un instant.");
+  });
+});
 
 // ============================================================
 // NAVIGATION PAGES LÉGALES
