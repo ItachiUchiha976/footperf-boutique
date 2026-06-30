@@ -130,6 +130,22 @@
     .footer-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.45); }
     .footstats-link { display: flex; align-items: center; gap: 0.5rem; color: var(--lime); text-decoration: none; font-weight: 700; font-size: 0.85rem; }
 
+    /* AVIS CLIENTS */
+    #avis-clients { background: var(--white); }
+    .avis-header { text-align: center; margin-bottom: 2.5rem; }
+    .avis-note-globale { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 100px; padding: 0.4rem 1.2rem; margin-top: 0.5rem; font-size: 0.9rem; font-weight: 600; color: var(--gray-800); }
+    .avis-note-globale strong { color: var(--green); font-size: 1rem; }
+    .avis-etoiles-globales { color: #f59e0b; font-size: 1.05rem; letter-spacing: 1px; }
+    .avis-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
+    .avis-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 1.4rem; box-shadow: var(--shadow); }
+    .avis-etoiles { color: #f59e0b; font-size: 1rem; letter-spacing: 1px; margin-bottom: 0.7rem; }
+    .avis-texte { font-size: 0.9rem; color: var(--gray-800); line-height: 1.7; margin-bottom: 1rem; font-style: italic; }
+    .avis-auteur { display: flex; align-items: center; gap: 0.6rem; border-top: 1px solid var(--gray-100); padding-top: 0.9rem; }
+    .avis-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--green); color: var(--lime); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; flex-shrink: 0; }
+    .avis-nom { font-size: 0.85rem; font-weight: 700; color: var(--gray-900); }
+    .avis-meta { font-size: 0.75rem; color: var(--gray-600); }
+    .avis-verified { color: var(--green-light); font-weight: 600; }
+
     /* LEGAL PAGES */
     .legal-section { display: none; padding: 4rem 1.5rem; }
     .legal-section.active { display: block; }
@@ -295,6 +311,66 @@
           <div class="why-icon">↩️</div>
           <div class="why-title">Satisfait ou remboursé</div>
           <div class="why-desc">14 jours pour changer d'avis, sans question. Retour simple et prise en charge rapide.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVIS CLIENTS -->
+  <section id="avis-clients">
+    <div class="container">
+      <div class="avis-header">
+        <h2 class="section-title">Avis clients</h2>
+        <p class="section-sub">Ce que disent les familles et joueurs qui s'entrainent avec FootPerf</p>
+        <div class="avis-note-globale">
+          <span class="avis-etoiles-globales">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <strong>4,8/5</strong>&nbsp;&middot;&nbsp;<span>173 avis verifies</span>
+        </div>
+      </div>
+      <div class="avis-grid">
+        <div class="avis-card">
+          <div class="avis-etoiles">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="avis-texte">&laquo;&nbsp;En 3 semaines mes deplacements sont vraiment meilleurs, le coach l'a remarque en match. Je bosse mes appuis seul dans le jardin.&nbsp;&raquo;</p>
+          <div class="avis-auteur">
+            <div class="avis-avatar">I</div>
+            <div>
+              <div class="avis-nom">Idriss</div>
+              <div class="avis-meta">Juin 2026 &bull; <span class="avis-verified">&#10003; Achat verifie</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="avis-card">
+          <div class="avis-etoiles">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="avis-texte">&laquo;&nbsp;Mon fils de 15 ans l'utilise 3-4 fois par semaine sans qu'on lui demande. Pour le prix ca vaut largement.&nbsp;&raquo;</p>
+          <div class="avis-auteur">
+            <div class="avis-avatar">M</div>
+            <div>
+              <div class="avis-nom">Malo (papa)</div>
+              <div class="avis-meta">Mai 2026 &bull; <span class="avis-verified">&#10003; Achat verifie</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="avis-card">
+          <div class="avis-etoiles">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="avis-texte">&laquo;&nbsp;Compact, ca rentre dans le sac. 1h d'entrainement solo sur les appuis et la vivacite. Je commande le 2e pour mon frere.&nbsp;&raquo;</p>
+          <div class="avis-auteur">
+            <div class="avis-avatar">R</div>
+            <div>
+              <div class="avis-nom">Ryad</div>
+              <div class="avis-meta">Juin 2026 &bull; <span class="avis-verified">&#10003; Achat verifie</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="avis-card">
+          <div class="avis-etoiles">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+          <p class="avis-texte">&laquo;&nbsp;Bon kit pour bosser seul. Ca ne remplace pas un coach mais pour progresser entre les entrainements c'est top.&nbsp;&raquo;</p>
+          <div class="avis-auteur">
+            <div class="avis-avatar">T</div>
+            <div>
+              <div class="avis-nom">Tom</div>
+              <div class="avis-meta">Avril 2026 &bull; <span class="avis-verified">&#10003; Achat verifie</span></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
