@@ -607,6 +607,17 @@ let cart = JSON.parse(localStorage.getItem('footperf_cart') || '[]');
 
 function saveCart() { localStorage.setItem('footperf_cart', JSON.stringify(cart)); }
 
+// BOS — expose panier pour checkout PayPal cross-page (fix isolation cart multi-boutique, 01/07/2026)
+try {
+  window.getCart = function () {
+    try {
+      var c = JSON.parse(localStorage.getItem('footperf_cart'));
+      return Array.isArray(c) ? c : [];
+    } catch (e) { return []; }
+  };
+  window.BOS_CART_KEY = 'footperf_cart';
+} catch (e) {}
+
 function updateCartCount() {
   const total = cart.reduce((s, i) => s + i.qty, 0);
   document.getElementById('cartCount').textContent = total;
