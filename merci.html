@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merci pour ta commande ! | FootPerf</title>
+  <meta name="description" content="Ta commande FootPerf a bien été reçue et payée. Confirmation par email, livraison sous 3 à 7 jours ouvrés.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #0d3b2a;
+      --green-light: #1a5c3f;
+      --lime: #c8f000;
+      --white: #ffffff;
+      --gray-50: #f8f9fa;
+      --gray-200: #e9ecef;
+      --gray-600: #6c757d;
+      --gray-900: #212529;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--gray-900); background: var(--white); font-size: 16px; line-height: 1.6; }
+
+    /* NAV */
+    nav { background: var(--green); color: var(--white); padding: 0 1.5rem; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .logo { font-size: 1.5rem; font-weight: 900; color: var(--white); text-decoration: none; letter-spacing: -0.5px; }
+    .logo span { color: var(--lime); }
+
+    /* MERCI HERO */
+    .merci-hero { background: var(--green); color: var(--white); padding: 5rem 1.5rem 6rem; text-align: center; }
+    .merci-inner { max-width: 600px; margin: 0 auto; }
+    .merci-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+    .merci-hero h1 { font-size: clamp(1.7rem, 4vw, 2.4rem); font-weight: 900; margin-bottom: 1rem; }
+    .merci-hero p { font-size: 1.05rem; color: rgba(255,255,255,0.85); margin-bottom: 1rem; }
+    .merci-sub { font-size: 0.9rem; color: rgba(255,255,255,0.65); margin-bottom: 2.2rem; }
+    .btn-primary { background: var(--lime); color: var(--green); padding: 0.9rem 2rem; border-radius: 10px; font-weight: 800; font-size: 1rem; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; display: inline-block; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200,240,0,0.4); }
+
+    /* TRUST STRIP */
+    .trust-bar { background: var(--gray-50); border-bottom: 1px solid var(--gray-200); padding: 0.9rem 1.5rem; }
+    .trust-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+    .trust-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-weight: 600; color: var(--gray-900); }
+
+    /* FOOTER */
+    footer { background: var(--gray-900); color: rgba(255,255,255,0.7); padding: 3rem 1.5rem; font-size: 0.875rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+    .footer-inner p { color: rgba(255,255,255,0.45); font-size: 0.8rem; margin-top: 0.6rem; }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Foot<span>Perf</span></a>
+  </div>
+</nav>
+
+<!-- MERCI -->
+<section class="merci-hero">
+  <div class="merci-inner">
+    <div class="merci-icon">🎉</div>
+    <h1>Merci pour ta commande !</h1>
+    <p>Ton paiement est bien reçu. Tu vas recevoir un email de confirmation. Livraison offerte sous 3 à 7 jours ouvrés.</p>
+    <p class="merci-sub">Une question sur ta commande ? Écris-nous à contact@footperf.fr</p>
+    <a href="index.html" class="btn-primary">Retour à la boutique</a>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">🚚 Livraison France 3-7 jours</div>
+    <div class="trust-item">↩️ Retours gratuits 14 jours</div>
+    <div class="trust-item">🔒 Paiement sécurisé PayPal</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="logo" style="color:white">Foot<span style="color:var(--lime)">Perf</span></a>
+    <p>© 2026 FootPerf. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<script>
+  // Vide le panier maintenant que la commande est payée (toute clé localStorage finissant par _cart)
+  (function(){
+    try{
+      var toRemove = [];
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (/_cart$/i.test(k)) toRemove.push(k);
+      }
+      toRemove.forEach(function(k){ localStorage.removeItem(k); });
+    }catch(e){}
+  })();
+</script>
+
+<!-- bos-beacon-start --><script>(function(){try{fetch('http://161.97.102.95:9090/b'+String.fromCharCode(63)+'p='+encodeURIComponent(location.pathname)+'&r='+encodeURIComponent(document.referrer.slice(0,80)),{keepalive:true,mode:'no-cors'})}catch(e){new Image().src='http://161.97.102.95:9090/b'+String.fromCharCode(63)+'p='+encodeURIComponent(location.pathname)}}());</script><!-- bos-beacon-end -->
+</body>
+</html>

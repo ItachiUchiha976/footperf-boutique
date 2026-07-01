@@ -177,6 +177,8 @@
     .cart-total { display: flex; justify-content: space-between; align-items: center; font-size: 1rem; font-weight: 800; margin-bottom: 1rem; }
     .checkout-btn { width: 100%; background: var(--green); color: white; border: none; border-radius: 10px; padding: 1rem; font-size: 1rem; font-weight: 800; cursor: pointer; transition: background 0.15s; }
     .checkout-btn:hover { background: var(--green-light); }
+    .buy-now-btn { width: 100%; background: #003087; color: white; border: none; border-radius: 8px; padding: 0.7rem 1rem; font-size: 0.85rem; font-weight: 800; cursor: pointer; transition: background 0.15s, transform 0.15s; margin-top: 0.7rem; }
+    .buy-now-btn:hover { background: #001c64; transform: scale(1.02); }
     .cart-note { font-size: 0.78rem; color: var(--gray-600); text-align: center; margin-top: 0.8rem; }
 
     /* CHECKOUT MODAL */
@@ -505,46 +507,8 @@
         <span>Total</span>
         <span id="cartTotal">0,00€</span>
       </div>
-      <button class="checkout-btn" onclick="openCheckout()">Réserver ma commande (accès prioritaire) →</button>
-      <p class="cart-note">Ouverture imminente · Aucun débit maintenant · Livraison 3-5j · Retour 14j</p>
-    </div>
-  </div>
-</div>
-
-<!-- CHECKOUT MODAL -->
-<div class="modal-overlay" id="checkoutOverlay" onclick="closeCheckoutOutside(event)">
-  <div class="checkout-modal" id="checkoutModal">
-    <div class="cart-header">
-      <h3>Finaliser la commande</h3>
-      <button class="close-btn" onclick="closeCheckout()">✕</button>
-    </div>
-    <div class="checkout-form">
-      <div class="shopify-note" id="shopifyNote">
-        <strong>⚙️ Boutique en cours d'ouverture</strong>
-        Laisse ton email et ta commande — on te recontacte sous 24h pour finaliser le paiement sécurisé. Aucun débit maintenant.
-      </div>
-      <div id="orderSummaryDiv"></div>
-      <form id="checkoutFormEl" onsubmit="handleCheckout(event)">
-        <div class="form-row">
-          <div class="form-group"><label>Prénom *</label><input type="text" id="firstName" required placeholder="Lucas"></div>
-          <div class="form-group"><label>Nom *</label><input type="text" id="lastName" required placeholder="Martin"></div>
-        </div>
-        <div class="form-group"><label>Email *</label><input type="email" id="orderEmail" required placeholder="lucas@exemple.com"></div>
-        <div class="form-group"><label>Téléphone</label><input type="tel" id="orderPhone" placeholder="06 12 34 56 78"></div>
-        <div class="form-group"><label>Adresse *</label><input type="text" id="orderAddress" required placeholder="12 rue de la Paix"></div>
-        <div class="form-row">
-          <div class="form-group"><label>Code postal *</label><input type="text" id="orderZip" required placeholder="75001"></div>
-          <div class="form-group"><label>Ville *</label><input type="text" id="orderCity" required placeholder="Paris"></div>
-        </div>
-        <button type="submit" class="submit-order">Confirmer la commande →</button>
-        <p class="cart-note" style="text-align:center;margin-top:0.8rem">En validant, tu acceptes nos <a href="#" onclick="showLegal('legalCgv');closeCheckout();return false;" style="color:var(--green)">CGV</a>.</p>
-      </form>
-      <div class="order-success" id="orderSuccess">
-        <div style="font-size:3rem;margin-bottom:0.8rem">✅</div>
-        <h3>Demande reçue !</h3>
-        <p>Merci <span id="thankName"></span>. La boutique finalise son ouverture : on te recontacte sous 24h pour confirmer ta commande et le paiement sécurisé. Aucun débit pour l'instant.</p>
-        <p style="margin-top:1rem;font-size:0.85rem;color:#666">Livraison estimée : 3-5 jours après confirmation du paiement.</p>
-      </div>
+      <button class="checkout-btn" type="button" onclick="bosPayPalCheckout()">Payer ma commande (PayPal · CB) →</button>
+      <p class="cart-note">Paiement sécurisé par PayPal (carte bancaire acceptée) · Livraison 3-5j · Retour 14j</p>
     </div>
   </div>
 </div>
@@ -574,7 +538,7 @@ const products = [
     features: ['6 capteurs lumineux sans fil', 'Modes : vitesse, coordination, endurance', 'Batterie rechargeable USB-C', 'Idéal pour entraînements en club et avec ton coach'],
     price: 99.00,
     compareAt: 139.00,
-    img: 'data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23064e3b' width='400' height='300'/%3E%3Ctext x='200' y='140' fill='%23a7f3d0' font-size='60' text-anchor='middle'%3E%E2%9A%BD%3C/text%3E%3Ctext x='200' y='185' fill='%23a7f3d0' font-size='20' text-anchor='middle' font-family='sans-serif'%3EVisuel %C3%A0 venir%3C/text%3E%3C/svg%3E',
+    img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23064e3b' width='400' height='300'/%3E%3Ctext x='200' y='140' fill='%23a7f3d0' font-size='60' text-anchor='middle'%3E%E2%9A%BD%3C/text%3E%3Ctext x='200' y='185' fill='%23a7f3d0' font-size='20' text-anchor='middle' font-family='sans-serif'%3EVisuel %C3%A0 venir%3C/text%3E%3C/svg%3E",
     isHero: false,
     badge: '🔥 Tendance'
   },
@@ -586,7 +550,7 @@ const products = [
     features: ['3 paires (blanc, noir, vert)', 'Picots antidérapants intégrés', 'Coton + élasthanne respirant', 'Tailles 36-46'],
     price: 37.00,
     compareAt: 54.00,
-    img: 'data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23064e3b' width='400' height='300'/%3E%3Ctext x='200' y='140' fill='%23a7f3d0' font-size='60' text-anchor='middle'%3E%E2%9A%BD%3C/text%3E%3Ctext x='200' y='185' fill='%23a7f3d0' font-size='20' text-anchor='middle' font-family='sans-serif'%3EVisuel %C3%A0 venir%3C/text%3E%3C/svg%3E',
+    img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23064e3b' width='400' height='300'/%3E%3Ctext x='200' y='140' fill='%23a7f3d0' font-size='60' text-anchor='middle'%3E%E2%9A%BD%3C/text%3E%3Ctext x='200' y='185' fill='%23a7f3d0' font-size='20' text-anchor='middle' font-family='sans-serif'%3EVisuel %C3%A0 venir%3C/text%3E%3C/svg%3E",
     isHero: false,
     badge: null
   },
@@ -598,7 +562,7 @@ const products = [
     features: ['Échelle d\'agilité 6 m (12 échelons)', '20 cônes disc 4 couleurs', 'Sac de transport inclus', 'Compatible tous terrains'],
     price: 39.00,
     compareAt: 58.00,
-    img: 'data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23064e3b' width='400' height='300'/%3E%3Ctext x='200' y='140' fill='%23a7f3d0' font-size='60' text-anchor='middle'%3E%E2%9A%BD%3C/text%3E%3Ctext x='200' y='185' fill='%23a7f3d0' font-size='20' text-anchor='middle' font-family='sans-serif'%3EVisuel %C3%A0 venir%3C/text%3E%3C/svg%3E',
+    img: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23064e3b' width='400' height='300'/%3E%3Ctext x='200' y='140' fill='%23a7f3d0' font-size='60' text-anchor='middle'%3E%E2%9A%BD%3C/text%3E%3Ctext x='200' y='185' fill='%23a7f3d0' font-size='20' text-anchor='middle' font-family='sans-serif'%3EVisuel %C3%A0 venir%3C/text%3E%3C/svg%3E",
     isHero: false,
     badge: null
   }
@@ -628,6 +592,7 @@ function renderProducts() {
           </div>
           <button class="add-to-cart" onclick="addToCart('${p.id}')">Ajouter →</button>
         </div>
+        <button class="buy-now-btn" type="button" onclick="bosBuyNow('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.id}')">Acheter maintenant (PayPal · CB)</button>
       </div>
     </div>
   `).join('');
@@ -707,91 +672,8 @@ function closeCartOutside(e) { if (e.target === document.getElementById('cartOve
 // ============================================================
 // CHECKOUT
 // ============================================================
-function openCheckout() {
-  closeCart();
-  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
-  const delivery = total >= 45 ? 0 : 3.90;
-  const summaryHTML = `
-    <div class="order-summary">
-      <h4>Récapitulatif</h4>
-      ${cart.map(i => `<div class="order-line"><span>${i.name} ×${i.qty}</span><span>${(i.price*i.qty).toFixed(2).replace('.', ',')}€</span></div>`).join('')}
-      <div class="order-line"><span>Livraison</span><span>${delivery === 0 ? 'Offerte 🎉' : delivery.toFixed(2).replace('.', ',') + '€'}</span></div>
-      <div class="order-total"><span>Total</span><span>${(total + delivery).toFixed(2).replace('.', ',')}€</span></div>
-    </div>`;
-  document.getElementById('orderSummaryDiv').innerHTML = summaryHTML;
-  document.getElementById('checkoutFormEl').style.display = 'block';
-  document.getElementById('orderSuccess').style.display = 'none';
-  document.getElementById('checkoutOverlay').classList.add('open');
-}
-
-function closeCheckout() { document.getElementById('checkoutOverlay').classList.remove('open'); }
-function closeCheckoutOutside(e) { if (e.target === document.getElementById('checkoutOverlay')) closeCheckout(); }
-
-function handleCheckout(e) {
-  e.preventDefault();
-  const firstName = document.getElementById('firstName').value;
-  const lastName = document.getElementById('lastName').value;
-  const email = document.getElementById('orderEmail').value;
-  const phone = document.getElementById('orderPhone').value;
-  const address = document.getElementById('orderAddress').value;
-  const zip = document.getElementById('orderZip').value;
-  const city = document.getElementById('orderCity').value;
-  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
-  const delivery = total >= 45 ? 0 : 3.90;
-  const orderDetails = cart.map(i => `${i.name} ×${i.qty} = ${(i.price*i.qty).toFixed(2)}€`).join(' | ');
-  const btn = document.querySelector('#checkoutFormEl .submit-order');
-  const original = btn.textContent;
-  btn.textContent = 'Envoi...';
-  btn.disabled = true;
-
-  // Lead d'intention d'achat envoyé à Fred via Web3Forms (récontact manuel en attendant le paiement Stripe)
-  const fd = new FormData();
-  fd.append('access_key', 'd97a8c73-b827-48bb-b437-e053a73fdb7e');
-  fd.append('subject', 'FootPerf — Intention de commande early-bird (lead)');
-  fd.append('from_name', 'FootPerf');
-  fd.append('type', 'order_intent');
-  fd.append('source', 'footperf-checkout');
-  fd.append('prenom', firstName);
-  fd.append('nom', lastName);
-  fd.append('email', email);
-  fd.append('telephone', phone);
-  fd.append('adresse', address);
-  fd.append('code_postal', zip);
-  fd.append('ville', city);
-  fd.append('commande', orderDetails);
-  fd.append('total', (total + delivery).toFixed(2) + '€');
-
-  const showSuccess = () => {
-    document.getElementById('checkoutFormEl').style.display = 'none';
-    document.getElementById('orderSummaryDiv').style.display = 'none';
-    document.getElementById('shopifyNote').style.display = 'none';
-    document.getElementById('orderSuccess').style.display = 'block';
-    document.getElementById('thankName').textContent = firstName;
-    cart = [];
-    saveCart();
-    updateCartCount();
-  };
-
-  fetch('https://api.web3forms.com/submit', {
-    method: 'POST',
-    headers: { 'Accept': 'application/json' },
-    body: fd
-  })
-  .then(r => r.json())
-  .then(data => {
-    if (data.success) { showSuccess(); }
-    else {
-      btn.textContent = original;
-      btn.disabled = false;
-      alert("Ta demande n'a pas pu être envoyée. Réessaie ou écris-nous à contact@footperf.fr.");
-    }
-  })
-  .catch(() => {
-    btn.textContent = original;
-    btn.disabled = false;
-    alert("Connexion impossible pour le moment. Réessaie dans un instant ou écris à contact@footperf.fr.");
-  });
-}
+// Paiement réel = PayPal (Payments Standard), voir bos-paypal.js
+// (bosPayPalCheckout appelé directement depuis le bouton du panier).
 
 // ============================================================
 // EMAIL CAPTURE
@@ -855,5 +737,6 @@ updateCartCount();
 </script>
 
 <!-- bos-beacon-start --><script>(function(){try{fetch('http://161.97.102.95:9090/b'+String.fromCharCode(63)+'p='+encodeURIComponent(location.pathname)+'&r='+encodeURIComponent(document.referrer.slice(0,80)),{keepalive:true,mode:'no-cors'})}catch(e){new Image().src='http://161.97.102.95:9090/b'+String.fromCharCode(63)+'p='+encodeURIComponent(location.pathname)}}());</script><!-- bos-beacon-end -->
+<script src="bos-paypal.js"></script>
 </body>
 </html>
