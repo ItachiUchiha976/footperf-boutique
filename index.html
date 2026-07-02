@@ -640,6 +640,8 @@ function addToCart(id) {
   const card = document.getElementById('card-' + id);
   if (card) { card.style.transform = 'scale(0.98)'; setTimeout(() => card.style.transform = '', 200); }
   openCart();
+  // BOS — Umami funnel event. Defensif, jamais bloquant. Ajout 02/07/2026.
+  try { if (window.umami && typeof umami.track === 'function') umami.track('add_to_cart', { produit: product ? product.shortName : id, prix: product ? product.price : 0, boutique: 'footperf-boutique' }); } catch (e) {}
 }
 
 function renderCartItems() {
