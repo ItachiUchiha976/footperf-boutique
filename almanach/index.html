@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Almanach & Grand Quiz de la Coupe du Monde 2026 (PDF) | FootPerf</title>
+<meta name="description" content="L'almanach complet de la Coupe du Monde 2026 : palmarès 1930-2022, records, anecdotes et 75 questions de quiz (3 niveaux) avec réponses. PDF de 28 pages, fact-checké. 7,90 € — téléchargement immédiat.">
+<meta property="og:title" content="L'Almanach & Grand Quiz de la Coupe du Monde 2026 (PDF)">
+<meta property="og:description" content="Palmarès, records, anecdotes et 75 questions/réponses. 28 pages, fact-checké. 7,90 €, téléchargement immédiat.">
+<meta property="og:type" content="product">
+<meta property="og:image" content="https://footperf.fr/almanach/img/preview-cover.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #0d3b2a; --green-light: #1a5c3f; --lime: #c8f000; --white: #ffffff;
+  --gray-50: #f8f9fa; --gray-100: #f1f3f5; --gray-200: #e9ecef; --gray-600: #6c757d;
+  --gray-800: #343a40; --gray-900: #212529; --radius: 12px;
+  --shadow: 0 4px 20px rgba(0,0,0,0.10); --shadow-lg: 0 8px 40px rgba(0,0,0,0.14);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; color: var(--gray-900); background: var(--white); font-size: 16px; line-height: 1.6; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+/* NAV */
+nav { background: var(--green); color: var(--white); padding: 0 1.5rem; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+.nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.logo { font-size: 1.5rem; font-weight: 900; color: var(--white); text-decoration: none; letter-spacing: -0.5px; }
+.logo span { color: var(--lime); }
+.nav-cta { background: var(--lime); color: var(--green); padding: 0.5rem 1.1rem; border-radius: 8px; font-weight: 800; font-size: 0.9rem; text-decoration: none; }
+
+/* HERO */
+.hero { background: linear-gradient(160deg, var(--green) 0%, var(--green-light) 100%); color: var(--white); padding: 3rem 1.5rem 3.5rem; }
+.hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 3rem; align-items: center; }
+.hero-badge { display: inline-block; background: rgba(200,240,0,0.16); color: var(--lime); font-weight: 700; font-size: 0.8rem; padding: 0.35rem 0.85rem; border-radius: 100px; margin-bottom: 1rem; letter-spacing: 0.3px; }
+.hero h1 { font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 900; line-height: 1.15; margin-bottom: 1rem; }
+.hero h1 span { color: var(--lime); }
+.hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.88); margin-bottom: 1.5rem; }
+.hero-facts { list-style: none; margin-bottom: 1.8rem; }
+.hero-facts li { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 0.6rem; font-size: 0.98rem; color: rgba(255,255,255,0.92); }
+.hero-facts li::before { content: "✔"; color: var(--lime); font-weight: 900; flex-shrink: 0; }
+.price-row { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 1.2rem; }
+.price { font-size: 2.4rem; font-weight: 900; color: var(--white); }
+.price-note { font-size: 0.9rem; color: rgba(255,255,255,0.7); }
+.btn-buy { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; max-width: 420px; background: var(--lime); color: var(--green); padding: 1.05rem 2rem; border: none; border-radius: 12px; font-weight: 900; font-size: 1.15rem; font-family: inherit; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 6px 24px rgba(200,240,0,0.35); }
+.btn-buy:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(200,240,0,0.5); }
+.pay-reassure { margin-top: 0.9rem; font-size: 0.85rem; color: rgba(255,255,255,0.75); display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+.hero-cover { position: relative; }
+.hero-cover img { border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.4); border: 4px solid rgba(255,255,255,0.08); }
+.cover-tag { position: absolute; top: -14px; right: -6px; background: var(--lime); color: var(--green); font-weight: 900; font-size: 0.85rem; padding: 0.5rem 1rem; border-radius: 100px; transform: rotate(4deg); box-shadow: var(--shadow); }
+
+/* TRUST STRIP */
+.trust-bar { background: var(--gray-50); border-bottom: 1px solid var(--gray-200); padding: 0.9rem 1.5rem; }
+.trust-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+.trust-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-weight: 600; color: var(--gray-900); }
+
+/* SECTIONS */
+section.block { max-width: 1000px; margin: 0 auto; padding: 3.5rem 1.5rem; }
+.section-tag { color: var(--green-light); font-weight: 800; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.6rem; }
+h2 { font-size: clamp(1.5rem, 3.2vw, 2rem); font-weight: 900; margin-bottom: 0.8rem; letter-spacing: -0.5px; }
+.lead { color: var(--gray-600); font-size: 1.05rem; margin-bottom: 2rem; max-width: 700px; }
+
+/* INSIDE GRID */
+.inside-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.2rem; }
+.inside-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); }
+.inside-card .ic { font-size: 1.8rem; margin-bottom: 0.6rem; }
+.inside-card h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 0.35rem; }
+.inside-card p { font-size: 0.92rem; color: var(--gray-600); }
+
+/* PREVIEWS */
+.previews { background: var(--gray-50); }
+.preview-scroll { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.2rem; margin-top: 0.5rem; }
+.preview-item { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--gray-200); }
+.preview-item img { width: 100%; height: auto; }
+.preview-item span { display: block; text-align: center; font-size: 0.82rem; font-weight: 600; color: var(--gray-600); padding: 0.6rem; }
+
+/* CTA BAND */
+.cta-band { background: var(--green); color: var(--white); text-align: center; padding: 3.5rem 1.5rem; }
+.cta-band h2 { color: var(--white); }
+.cta-band p { color: rgba(255,255,255,0.85); max-width: 540px; margin: 0.6rem auto 1.6rem; }
+.cta-band .price { color: var(--lime); }
+.cta-band .btn-buy { margin: 0 auto; }
+
+/* FAQ */
+.faq details { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 0.8rem; background: var(--white); }
+.faq summary { font-weight: 700; cursor: pointer; font-size: 1rem; list-style: none; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; float: right; color: var(--green-light); font-weight: 900; }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { color: var(--gray-600); font-size: 0.95rem; margin-top: 0.7rem; }
+
+/* FOOTER */
+footer { background: var(--green); color: rgba(255,255,255,0.75); padding: 2.5rem 1.5rem 1.8rem; }
+.footer-inner { max-width: 1000px; margin: 0 auto; }
+.footer-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; padding-bottom: 1.4rem; border-bottom: 1px solid rgba(255,255,255,0.12); }
+.footer-links { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+.footer-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.88rem; }
+.footer-links a:hover { color: var(--lime); }
+.footer-bottom { padding-top: 1.2rem; font-size: 0.82rem; color: rgba(255,255,255,0.55); }
+
+@media (max-width: 820px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-cover { order: -1; max-width: 320px; margin: 0 auto; }
+  .btn-buy { max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">Foot<span>Perf</span></a>
+    <a href="#acheter" class="nav-cta">Télécharger — 7,90 €</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-badge">⚽ Coupe du Monde 2026 · 11 juin – 19 juillet</span>
+      <h1>L'Almanach &amp; Grand Quiz de la <span>Coupe du Monde 2026</span></h1>
+      <p class="hero-sub">Toute l'histoire du Mondial réunie dans un seul document, plus un quiz de 75 questions à jouer en famille ou entre amis pendant la compétition.</p>
+      <ul class="hero-facts">
+        <li>Palmarès complet 1930 → 2022 et les 8 nations championnes</li>
+        <li>Records, chiffres clés et anecdotes insolites vérifiés</li>
+        <li>75 questions de quiz sur 3 niveaux, avec toutes les réponses</li>
+        <li>Feuille de score à imprimer pour vos soirées Mondial</li>
+      </ul>
+      <div id="acheter" class="price-row">
+        <span class="price">7,90 €</span>
+        <span class="price-note">PDF · 28 pages · téléchargement immédiat</span>
+      </div>
+      <button class="btn-buy" onclick="bosBuyNow('Almanach & Grand Quiz Coupe du Monde 2026 (PDF)', 7.90, 'almanach-cdm2026')">
+        Télécharger mon almanach — 7,90 €
+      </button>
+      <div class="pay-reassure">🔒 Paiement sécurisé PayPal ou carte bancaire · aucun compte requis</div>
+    </div>
+    <div class="hero-cover">
+      <span class="cover-tag">28 pages</span>
+      <img src="img/preview-cover.png" alt="Couverture de l'Almanach & Grand Quiz de la Coupe du Monde 2026" width="1191" height="1684" loading="eager">
+    </div>
+  </div>
+</header>
+
+<!-- TRUST -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">⚡ Reçu tout de suite</div>
+    <div class="trust-item">📄 Format PDF imprimable</div>
+    <div class="trust-item">✅ Faits vérifiés (FIFA, FFF, L'Équipe)</div>
+    <div class="trust-item">↩️ Satisfait ou remboursé 14 jours</div>
+  </div>
+</div>
+
+<!-- INSIDE -->
+<section class="block">
+  <div class="section-tag">Ce que tu reçois</div>
+  <h2>28 pages pour tout savoir sur le Mondial</h2>
+  <p class="lead">Un document clair et illustré, à lire tranquillement puis à ressortir à chaque match pour animer la soirée.</p>
+  <div class="inside-grid">
+    <div class="inside-card">
+      <div class="ic">🏆</div>
+      <h3>Histoire &amp; palmarès</h3>
+      <p>Toutes les finales de 1930 à 2022, les 8 nations qui ont soulevé le trophée et les grandes légendes.</p>
+    </div>
+    <div class="inside-card">
+      <div class="ic">📊</div>
+      <h3>Records &amp; chiffres</h3>
+      <p>Meilleurs buteurs, matchs de légende, anecdotes insolites — les faits marquants qui font briller en soirée.</p>
+    </div>
+    <div class="inside-card">
+      <div class="ic">❓</div>
+      <h3>75 questions de quiz</h3>
+      <p>Trois niveaux (débutant, intermédiaire, expert) avec la feuille de réponses complète pour corriger.</p>
+    </div>
+    <div class="inside-card">
+      <div class="ic">🗺️</div>
+      <h3>Spécial 2026</h3>
+      <p>48 équipes, 104 matchs, 16 villes hôtes : le nouveau format expliqué simplement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PREVIEWS -->
+<section class="block previews">
+  <div class="section-tag">Aperçu réel</div>
+  <h2>Des vraies pages, pas un montage</h2>
+  <p class="lead">Voici exactement ce que tu vas recevoir — les pages ci-dessous sont extraites du PDF final.</p>
+  <div class="preview-scroll">
+    <div class="preview-item"><img src="img/preview-palmares.png" alt="Page palmarès des Coupes du Monde 1930-2022" loading="lazy"><span>Palmarès 1930-2022</span></div>
+    <div class="preview-item"><img src="img/preview-records.png" alt="Page records et chiffres clés" loading="lazy"><span>Records &amp; chiffres</span></div>
+    <div class="preview-item"><img src="img/preview-quiz-debutant.png" alt="Page de questions du quiz" loading="lazy"><span>Questions de quiz</span></div>
+    <div class="preview-item"><img src="img/preview-feuille-score.png" alt="Feuille de score à imprimer" loading="lazy"><span>Feuille de score</span></div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="section-tag" style="color:var(--lime)">Prêt pour le coup d'envoi</div>
+  <h2>L'almanach complet, tout de suite</h2>
+  <p>Paie en 30 secondes et télécharge ton PDF dans la foulée. Prêt à animer chaque match du Mondial.</p>
+  <div class="price-row" style="justify-content:center">
+    <span class="price">7,90 €</span>
+    <span class="price-note">Paiement unique · pas d'abonnement</span>
+  </div>
+  <button class="btn-buy" onclick="bosBuyNow('Almanach & Grand Quiz Coupe du Monde 2026 (PDF)', 7.90, 'almanach-cdm2026')">
+    Télécharger mon almanach — 7,90 €
+  </button>
+</div>
+
+<!-- FAQ -->
+<section class="block faq">
+  <div class="section-tag">Questions fréquentes</div>
+  <h2>Tout ce qu'il faut savoir</h2>
+  <details open>
+    <summary>Comment je reçois l'almanach après le paiement ?</summary>
+    <p>Dès que le paiement PayPal est validé, tu arrives sur une page de téléchargement immédiat : tu récupères ton PDF tout de suite et tu le gardes. Un souci ? On te le renvoie par email sous 24 h à contact@footperf.fr.</p>
+  </details>
+  <details>
+    <summary>C'est quel format ? Je peux l'imprimer ?</summary>
+    <p>C'est un PDF de 28 pages, lisible sur téléphone, tablette et ordinateur, et parfaitement imprimable (notamment la feuille de score du quiz).</p>
+  </details>
+  <details>
+    <summary>Les informations sont-elles fiables ?</summary>
+    <p>Oui. Toutes les données (palmarès, records, format 2026) ont été vérifiées à partir de sources officielles : FIFA.com, FFF.fr, Wikipédia, L'Équipe et la BBC.</p>
+  </details>
+  <details>
+    <summary>Faut-il un compte PayPal pour payer ?</summary>
+    <p>Non. Tu peux payer par carte bancaire directement, sans créer de compte PayPal.</p>
+  </details>
+  <details>
+    <summary>Et si l'almanach ne me plaît pas ?</summary>
+    <p>Satisfait ou remboursé : tu as 14 jours pour nous écrire à contact@footperf.fr, on te rembourse sans discuter.</p>
+  </details>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/" class="logo" style="color:#fff">Foot<span style="color:var(--lime)">Perf</span></a>
+      <div class="footer-links">
+        <a href="/">Boutique</a>
+        <a href="mailto:contact@footperf.fr">Contact</a>
+        <a href="/politique-confidentialite.html">Confidentialité</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 FootPerf · L'Almanach &amp; Grand Quiz de la Coupe du Monde 2026 · Produit numérique (PDF). Paiement sécurisé via PayPal. Sources des données : FIFA, FFF, Wikipédia, L'Équipe, BBC.
+    </div>
+  </div>
+</footer>
+
+<!-- umami-start --><script defer src="https://cloud.umami.is/script.js" data-website-id="d0fa94fe-a108-4590-a465-8f0017569370"></script><!-- umami-end -->
+<script src="../bos-paypal.js"></script>
+</body>
+</html>
