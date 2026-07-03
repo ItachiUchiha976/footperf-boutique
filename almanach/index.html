@@ -48,9 +48,10 @@ nav { background: var(--green); color: var(--white); padding: 0 1.5rem; position
 .btn-buy { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; max-width: 420px; background: var(--lime); color: var(--green); padding: 1.05rem 2rem; border: none; border-radius: 12px; font-weight: 900; font-size: 1.15rem; font-family: inherit; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 6px 24px rgba(200,240,0,0.35); }
 .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(200,240,0,0.5); }
 .pay-reassure { margin-top: 0.9rem; font-size: 0.85rem; color: rgba(255,255,255,0.75); display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
-.hero-cover { position: relative; }
-.hero-cover img { border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.4); border: 4px solid rgba(255,255,255,0.08); }
-.cover-tag { position: absolute; top: -14px; right: -6px; background: var(--lime); color: var(--green); font-weight: 900; font-size: 0.85rem; padding: 0.5rem 1rem; border-radius: 100px; transform: rotate(4deg); box-shadow: var(--shadow); }
+.hero-cover { display: flex; justify-content: center; align-items: flex-start; }
+.cover-frame { position: relative; display: inline-block; }
+.cover-frame img { display: block; max-height: 460px; width: auto; max-width: 100%; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.4); border: 4px solid rgba(255,255,255,0.08); }
+.cover-tag { position: absolute; top: -14px; right: -10px; background: var(--lime); color: var(--green); font-weight: 900; font-size: 0.85rem; padding: 0.5rem 1rem; border-radius: 100px; transform: rotate(4deg); box-shadow: var(--shadow); z-index: 2; }
 
 /* TRUST STRIP */
 .trust-bar { background: var(--gray-50); border-bottom: 1px solid var(--gray-200); padding: 0.9rem 1.5rem; }
@@ -140,8 +141,10 @@ footer { background: var(--green); color: rgba(255,255,255,0.75); padding: 2.5re
       <div class="pay-reassure">🔒 Paiement sécurisé PayPal ou carte bancaire · aucun compte requis</div>
     </div>
     <div class="hero-cover">
-      <span class="cover-tag">28 pages</span>
-      <img src="img/preview-cover.png" alt="Couverture de l'Almanach & Grand Quiz de la Coupe du Monde 2026" width="1191" height="1684" loading="eager">
+      <div class="cover-frame">
+        <span class="cover-tag">28 pages</span>
+        <img src="img/preview-cover.png" alt="Couverture de l'Almanach & Grand Quiz de la Coupe du Monde 2026" width="1191" height="1684" loading="eager">
+      </div>
     </div>
   </div>
 </header>
