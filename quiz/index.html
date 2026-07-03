@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a2a18">
+
+<title>Quelle Légende du Foot es-tu ? — Le Test | FootStats</title>
+<meta name="description" content="Pelé, Zidane, Maradona, Messi… À quelle légende du football ressembles-tu ? Réponds à 10 questions et découvre ton joueur de légende. Test gratuit, rapide, résultat à partager.">
+<meta name="author" content="FootStats">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://footperf.fr/quiz/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FootStats">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Quelle Légende du Foot es-tu ?">
+<meta property="og:description" content="Zidane, Pelé, Maradona, Messi, Cruyff… Découvre à quelle légende du football tu ressembles. 16 légendes possibles, résultat à partager.">
+<meta property="og:url" content="https://footperf.fr/quiz/">
+<meta property="og:image" content="https://footperf.fr/quiz/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Quelle Légende du Foot es-tu ?">
+<meta name="twitter:description" content="Découvre à quelle légende du football tu ressembles. 16 légendes possibles, résultat à partager.">
+<meta name="twitter:image" content="https://footperf.fr/quiz/og-image.png">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<!-- JSON-LD : Quiz + WebApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "FootStats",
+      "url": "https://footperf.fr/quiz/",
+      "inLanguage": "fr-FR"
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Quelle Légende du Foot es-tu ?",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+      "inLanguage": "fr-FR",
+      "url": "https://footperf.fr/quiz/",
+      "description": "Test de personnalité football : découvre à quelle légende du foot tu ressembles parmi 16 icônes (Pelé, Zidane, Maradona, Messi, Cruyff, Beckenbauer…). Résultat partageable."
+    }
+  ]
+}
+</script>
+
+<!-- ===================================================================
+     MONÉTISATION — TODO (revue 27/06/2026) :
+     - AdSense : activer SEULEMENT après compte approuvé + ~1000 visites/mois.
+       NE PAS inventer d'ID client. Placeholder officiel :
+       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+     - Revenu live AUJOURD'HUI : capture email VIP FootPerf (Web3Forms) +
+       lien partenaire Comparateur IA (section ressources). Pas de cul-de-sac.
+==================================================================== -->
+</head>
+<body>
+
+<div class="pitch-bg" aria-hidden="true"></div>
+
+<main class="wrap">
+
+  <!-- ============ ÉCRAN ACCUEIL ============ -->
+  <section id="screen-intro" class="screen screen--active card">
+    <p class="brandline">⚽ FOOTSTATS · LE TEST DES LÉGENDES</p>
+    <h1 class="title">Quelle <span class="hl">légende du foot</span> es-tu&nbsp;?</h1>
+    <p class="subtitle">Le test qui révèle ton joueur de légende.</p>
+    <p class="intro-text">
+      Pelé, Zidane, Maradona, Messi, Cruyff, Ronaldinho…
+      Et si tu partageais l'ADN d'un <strong>monstre sacré&nbsp;?</strong>
+      Réponds honnêtement à <strong>10 questions</strong> et découvre à quelle
+      <em>légende du football</em> tu ressembles vraiment — parmi <strong>16 icônes</strong>.
+    </p>
+    <button id="btn-start" class="btn btn--primary btn--big">Lancer le test ⚽</button>
+    <p class="meta-line">10 questions · ~2 minutes · 100&nbsp;% gratuit</p>
+
+    <!-- Accès DIRECT à l'offre dès l'accueil (fenêtre CdM) : pour qui veut l'almanach tout de suite, sans faire le test -->
+    <div class="intro-offer">
+      <p class="intro-offer-line">🏆 <strong>Coupe du Monde 2026 en cours&nbsp;?</strong> Récupère l'<strong>Almanach &amp; le Grand Quiz CdM</strong> (PDF) tout de suite — sans attendre la fin du test.</p>
+      <a class="intro-offer-link"
+         href="https://ko-fi.com/s/a60bdc1106"
+         target="_blank" rel="noopener">
+        📖 L'almanach &amp; le quiz · 4,90&nbsp;€ prix libre →
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ ÉCRAN QUIZ ============ -->
+  <section id="screen-quiz" class="screen card">
+    <div class="quiz-top">
+      <span id="q-counter" class="counter">Question 1 / 10</span>
+      <button id="btn-restart-mini" class="restart-mini" type="button" title="Recommencer">↺</button>
+    </div>
+    <div class="progress"><div id="progress-bar" class="progress-bar"></div></div>
+
+    <h2 id="q-text" class="question">…</h2>
+
+    <div id="answers" class="answers"><!-- options injectées --></div>
+  </section>
+
+  <!-- ============ ÉCRAN RÉSULTAT ============ -->
+  <section id="screen-result" class="screen card">
+    <p class="brandline">TON RÉSULTAT</p>
+    <div class="result-head">
+      <span id="res-flag" class="res-flag">🏆</span>
+      <p class="res-pre">Tu es…</p>
+      <h2 id="res-name" class="res-name">…</h2>
+      <p id="res-archetype" class="res-archetype">…</p>
+      <p id="res-meta" class="res-meta">…</p>
+    </div>
+
+    <p id="res-desc" class="res-desc">…</p>
+
+    <div id="res-tags" class="res-tags"><!-- tags --></div>
+
+    <div class="fact-box">
+      <p class="fact-title">💡 Le savais-tu&nbsp;?</p>
+      <ul id="res-facts" class="fact-list"><!-- faits vérifiés --></ul>
+    </div>
+
+    <!-- ====== FUNNEL #1 (priorité : 1er € · fenêtre CdM) : Offre Ko-fi — encaissement instantané PayPal, au pic d'intention ====== -->
+    <div class="cta-offer">
+      <p class="cta-offer-kicker">🏆 Coupe du Monde 2026 · c'est maintenant</p>
+      <h3 class="cta-offer-title">L'Almanach &amp; le Grand Quiz CdM&nbsp;2026</h3>
+      <p class="cta-offer-pitch">Vis chaque match de cette Coupe du Monde comme un vrai expert : l'almanach des stats à connaître + le grand quiz, réunis dans un seul PDF.</p>
+      <ul class="cta-offer-points">
+        <li>📖 Les stats, records et palmarès clés à sortir au bon moment</li>
+        <li>❓ Le grand quiz pour défier (et battre) tes potes à chaque match</li>
+        <li>⚡ PDF à télécharger tout de suite — prêt avant le prochain coup d'envoi</li>
+      </ul>
+      <div class="cta-offer-price">
+        <span class="price-tag">4,90&nbsp;€</span>
+        <span class="price-access">ou plus · prix libre</span>
+      </div>
+      <a class="btn btn--gold cta-offer-btn"
+         href="https://ko-fi.com/s/a60bdc1106"
+         target="_blank" rel="noopener">
+        Je veux l'almanach &amp; le quiz →
+      </a>
+      <p class="cta-offer-fine">Paiement via Ko-fi (PayPal / CB, sans compte) · Téléchargement immédiat</p>
+    </div>
+
+    <!-- ====== FUNNEL #2 : abonnement chaîne FootStats (audience) ====== -->
+    <div class="cta-yt">
+      <p class="cta-yt-title">Tu kiffes le foot et son Histoire&nbsp;?</p>
+      <p class="cta-yt-sub">FootStats, c'est les vraies stats et les vraies histoires de foot — pas de blabla. Tu vas devenir incollable. Rejoins-nous 👇</p>
+      <a id="cta-sub" class="btn btn--yt" href="https://www.youtube.com/@FootStats2026Fr?sub_confirmation=1" target="_blank" rel="noopener">
+        ▶️ S'abonner à FootStats
+      </a>
+    </div>
+
+    <!-- ====== FUNNEL #3 : capture email — Liste VIP boutique FootPerf (Web3Forms) ====== -->
+    <form id="email-form" class="email-cap"
+          action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="d97a8c73-b827-48bb-b437-e053a73fdb7e">
+      <input type="hidden" name="subject" value="Quelle Légende Foot — nouveau lead VIP FootPerf">
+      <input type="hidden" name="from_name" value="Quelle Légende Foot">
+      <input type="checkbox" name="botcheck" style="display:none !important" tabindex="-1" autocomplete="off">
+      <p class="email-title">🛒 Liste VIP FootPerf — l'équipement des vrais fans</p>
+      <p class="email-sub">Sois prévenu(e) de l'ouverture et reçois <strong>-10&nbsp;% + l'accès prioritaire</strong>. (Ouverture imminente.)</p>
+      <div class="email-row">
+        <input id="email-input" class="email-input" type="email" name="email" required inputmode="email"
+               placeholder="ton@email.com" autocomplete="email" aria-label="Ton adresse email"
+               aria-describedby="email-note">
+        <button class="btn btn--primary" type="submit">Je veux le -10&nbsp;%</button>
+      </div>
+      <p id="email-msg" class="email-msg" hidden></p>
+      <p id="email-note" class="email-note">Pas de spam. Désinscription en 1 clic. Email utilisé uniquement pour la liste VIP FootPerf (RGPD).</p>
+    </form>
+
+    <div class="share-row">
+      <button id="btn-share" class="btn btn--gold">📲 Partager mon résultat</button>
+      <button id="btn-download" class="btn btn--ghost">⬇️ Enregistrer l'image</button>
+    </div>
+
+    <p class="more-soon">🔜 Bientôt&nbsp;: « Devine la légende », le quiz des records et bien plus.</p>
+
+    <button id="btn-replay" class="btn btn--ghost btn--big">↻ Refaire le test</button>
+
+    <!-- ====== Section ressources ====== -->
+    <div class="resources">
+      <p class="res-h">Pour aller plus loin</p>
+      <ul class="res-links">
+        <li>📺 La chaîne <a href="https://www.youtube.com/@FootStats2026Fr?sub_confirmation=1" target="_blank" rel="noopener">FootStats</a> — stats &amp; histoires de foot</li>
+        <li>🛒 La boutique <a href="https://footperf.fr/" rel="noopener">FootPerf</a> — l'équipement des vrais fans de foot</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>Fait avec ⚽ par <strong>FootStats</strong> · Test 100&nbsp;% gratuit</p>
+    <p class="foot-fine">Faits vérifiés (FIFA, UEFA, Guinness). Test de personnalité ludique, sans valeur scientifique.</p>
+  </footer>
+</main>
+
+<!-- canvas caché pour générer l'image de partage -->
+<canvas id="share-canvas" width="1080" height="1080" hidden></canvas>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<!-- umami-start --><script defer src="https://cloud.umami.is/script.js" data-website-id="d0fa94fe-a108-4590-a465-8f0017569370"></script><!-- umami-end -->
+</body>
+</html>
