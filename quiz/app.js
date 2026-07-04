@@ -94,9 +94,15 @@
     show("screen-result");
   }
 
+  // Windows ne rend pas les emojis drapeaux régionaux (s'affichent en lettres brutes, ex. "BR") :
+  // on retombe sur le trophée, deja utilise en fallback HTML sur cet element. Ajout 04/07/2026.
+  function isWindows() {
+    try { return /Win/i.test(navigator.platform || navigator.userAgent || ""); } catch (e) { return false; }
+  }
+
   function renderResult(id) {
     var L = LEGENDS[id];
-    $("res-flag").textContent = L.flag;
+    $("res-flag").textContent = isWindows() ? "🏆" : L.flag;
     $("res-name").textContent = L.name;
     $("res-archetype").textContent = "« " + L.archetype + " »";
     $("res-meta").textContent = L.country + " · " + L.era;
@@ -271,10 +277,9 @@
         var t = form.querySelector(".email-title"); if (t) t.style.display = "none";
         var s = form.querySelector(".email-sub"); if (s) s.style.display = "none";
         msg.hidden = false; msg.style.color = "#27c46a";
-        msg.innerHTML = "Merci, tu es sur la liste 🎉 En attendant le Mondial : " +
-          "<a href=\"https://ko-fi.com/s/a60bdc1106\" target=\"_blank\" rel=\"noopener\">" +
-          "l'Almanach &amp; le Grand Quiz CdM 2026</a> → " +
-          "https://ko-fi.com/s/a60bdc1106";
+        msg.innerHTML = "Merci, tu es sur la liste 🎉 Pendant le Mondial : " +
+          "<a href=\"https://footperf.fr/coupe-du-monde-2026/\" rel=\"noopener\">" +
+          "le Guide &amp; Grand Quiz CdM 2026 →</a>";
       } else {
         throw new Error("submit failed");
       }

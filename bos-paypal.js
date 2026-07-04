@@ -37,7 +37,7 @@
     f.method='POST'; f.action='https://www.paypal.com/cgi-bin/webscr'; f.style.display='none'; f.target='_top';
     function add(n,v){ var i=document.createElement('input'); i.type='hidden'; i.name=n; i.value=v; f.appendChild(i); }
     add('cmd','_cart'); add('upload','1'); add('business',BUSINESS);
-    add('currency_code','EUR'); add('lc','FR'); add('no_note','1'); add('rm','2');
+    add('currency_code','EUR'); add('lc','FR'); add('no_note','1'); add('rm','1');
     add('return',merciUrl()); add('cancel_return',location.href);
     cart.forEach(function(it,idx){
       var n=idx+1;
@@ -46,8 +46,15 @@
       add('quantity_'+n,Math.max(1,parseInt(it.qty||1,10)));
       if(it.id) add('item_number_'+n,String(it.id));
     });
+    bosMarkPendingPurchase();
     document.body.appendChild(f); f.submit();
   };
+  /* BOS — marque un achat "en cours" (sessionStorage) juste avant l'envoi vers PayPal.
+     Sert a dedupliquer le tracking Umami sur les pages merci (ne compter que les vrais retours PayPal,
+     pas un refresh/acces direct). Efface a la lecture, cote page merci. Ajout 04/07/2026. */
+  function bosMarkPendingPurchase(){
+    try{ sessionStorage.setItem('bos_pp_pending','1'); }catch(e){}
+  }
   // Bouton "Acheter maintenant" mono-produit (footperf mono-page ou fiches produit) : bosBuyNow(name, price, id?)
   window.bosBuyNow=function(name, price, id){
     bosTrack('buy_now_click', {produit:(name||'Commande').toString().slice(0,120), prix:Number(price||0), boutique:bosBoutiqueSlug()});
@@ -55,9 +62,10 @@
     f.method='POST'; f.action='https://www.paypal.com/cgi-bin/webscr'; f.style.display='none'; f.target='_top';
     function add(n,v){ var i=document.createElement('input'); i.type='hidden'; i.name=n; i.value=v; f.appendChild(i); }
     add('cmd','_xclick'); add('business',BUSINESS); add('currency_code','EUR'); add('lc','FR');
-    add('no_note','1'); add('rm','2'); add('return',merciUrl()); add('cancel_return',location.href);
+    add('no_note','1'); add('rm','1'); add('return',merciUrl()); add('cancel_return',location.href);
     add('item_name',(name||'Commande').toString().slice(0,120)); add('amount',Number(price||0).toFixed(2));
     if(id) add('item_number',String(id));
+    bosMarkPendingPurchase();
     document.body.appendChild(f); f.submit();
   };
 })();

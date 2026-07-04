@@ -56,7 +56,16 @@ h1 { font-size:1.6rem; font-weight:900; margin-bottom:0.7rem; }
 <!-- umami-start --><script defer src="https://cloud.umami.is/script.js" data-website-id="d0fa94fe-a108-4590-a465-8f0017569370"></script><!-- umami-end -->
 <script>
   // Umami: marquer la conversion "guide" (paiement PayPal validé -> page merci)
-  try { if (window.umami) setTimeout(function(){ umami.track('guide_cdm_purchase_confirmed', { produit:'guide-cdm2026', prix:4.90 }); }, 800); } catch(e){}
+  // BOS — ne compter que sur un vrai retour PayPal (referrer paypal.com ou flag sessionStorage
+  // pose par bos-paypal.js avant le submit), jamais sur un refresh/acces direct. Ajout 04/07/2026.
+  try {
+    var bosCameFromPaypal = /paypal\.com/i.test(document.referrer || '');
+    var bosPending = sessionStorage.getItem('bos_pp_pending') === '1';
+    if (window.umami && (bosCameFromPaypal || bosPending)) {
+      setTimeout(function(){ umami.track('guide_cdm_purchase_confirmed', { produit:'guide-cdm2026', prix:4.90 }); }, 800);
+    }
+    sessionStorage.removeItem('bos_pp_pending');
+  } catch(e){}
 </script>
 </body>
 </html>

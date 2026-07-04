@@ -79,7 +79,7 @@
     <div class="merci-icon">🎉</div>
     <h1>Merci pour ta commande !</h1>
     <p>Ton paiement est bien reçu. Tu vas recevoir un email de confirmation. Livraison offerte, estimée sous 12 à 20 jours ouvrés.</p>
-    <p class="merci-sub">Une question sur ta commande ? Écris-nous : apprentissage.feynman@gmail.com — réponse sous 24 h ouvrées.</p>
+    <p class="merci-sub">Une question sur ta commande ? Écris-nous : contact@footperf.fr — réponse sous 24 h ouvrées.</p>
     <a href="index.html" class="btn-primary">Retour à la boutique</a>
   </div>
 </section>
@@ -101,7 +101,7 @@
     <p class="suivi-msg">Bien reçu ! Tu recevras un e-mail dès que ta commande sera expédiée.</p>
     <hr>
     <p class="suivi-fine">
-      Une question sur ta commande ? Écris-nous : <a href="mailto:apprentissage.feynman@gmail.com">apprentissage.feynman@gmail.com</a> — réponse sous 24 h ouvrées.<br>
+      Une question sur ta commande ? Écris-nous : <a href="mailto:contact@footperf.fr">contact@footperf.fr</a> — réponse sous 24 h ouvrées.<br>
       Livraison estimée 12 à 20 jours ouvrés, numéro de suivi envoyé dès l'expédition. Retours acceptés sous 14 jours.
     </p>
   </div>
@@ -162,8 +162,18 @@
 
 <!-- umami-start --><script defer src="https://cloud.umami.is/script.js" data-website-id="d0fa94fe-a108-4590-a465-8f0017569370"></script><!-- umami-end -->
 <script>
+// BOS — ne compter l'evenement "purchase" que sur un vrai retour PayPal (referrer paypal.com
+// ou flag sessionStorage pose par bos-paypal.js avant le submit), jamais sur un refresh/acces direct.
+// Ajout 04/07/2026.
 window.addEventListener('load', function(){
-  if (window.umami) { umami.track('purchase', {boutique:'footperf'}); }
+  try{
+    var cameFromPaypal = /paypal\.com/i.test(document.referrer || '');
+    var pending = sessionStorage.getItem('bos_pp_pending') === '1';
+    if (window.umami && (cameFromPaypal || pending)) {
+      umami.track('purchase', {boutique:'footperf'});
+    }
+    sessionStorage.removeItem('bos_pp_pending');
+  }catch(e){}
 });
 </script>
 </body>

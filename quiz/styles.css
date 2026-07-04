@@ -232,8 +232,13 @@ body{
 .email-row .btn{ width:auto; padding:13px 20px; }
 .email-msg{ margin-top:10px; font-weight:600; font-size:.9rem; color:var(--grass); }
 .email-note{ margin-top:10px; font-size:.78rem; color:var(--ink-soft); }
+/* Petits écrans : le champ email est écrasé à côté du bouton -> on empile (fix 04/07/2026) */
+@media (max-width:480px){
+  .email-row{ flex-direction:column; }
+  .email-row .btn{ width:100%; }
+}
 
-/* Offre Gumroad — Almanach & Grand Quiz CdM 2026 */
+/* Offre — Guide & Grand Quiz CdM 2026 (page native footperf.fr/coupe-du-monde-2026) */
 .cta-offer{
   background:linear-gradient(180deg,#1a3d1f 0%,#0f2e17 100%);
   border:1.5px solid rgba(245,197,66,.45);
