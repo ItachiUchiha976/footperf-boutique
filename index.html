@@ -566,7 +566,7 @@ const products = [
 // ============================================================
 function renderProducts() {
   const grid = document.getElementById('productsGrid');
-  const available = products.filter(p => p.available !== false);
+  const available = products.filter(p => p.available !== false && !p.photoPending);
   grid.innerHTML = available.map(p => `
     <div class="product-card ${p.isHero ? 'hero-product' : ''}" id="card-${p.id}">
       ${p.isHero ? `<div class="hero-badge-card">${p.badge}</div>` : ''}
