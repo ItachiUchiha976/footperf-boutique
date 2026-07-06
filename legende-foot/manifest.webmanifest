@@ -1,0 +1,14 @@
+{
+  "name": "Quelle Légende du Foot es-tu ? — FootStats",
+  "short_name": "Légende Foot",
+  "description": "Test de personnalité football : découvre à quelle légende du foot tu ressembles.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0a2a18",
+  "theme_color": "#0a2a18",
+  "lang": "fr-FR",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
