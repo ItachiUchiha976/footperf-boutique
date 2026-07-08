@@ -520,11 +520,12 @@
       <div class="cart-empty">Ton panier est vide.</div>
     </div>
     <div class="cart-footer" id="cartFooter" style="display:none">
+      <div id="cartPromo" style="display:none;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:6px 12px;margin-bottom:8px;text-align:center;font-size:13px;color:#166534;font-weight:600"></div>
       <div class="cart-total">
         <span>Total</span>
         <span id="cartTotal">0,00€</span>
       </div>
-      <button class="checkout-btn" type="button" onclick="bosPayPalCheckout()">Payer ma commande (PayPal · CB) →</button>
+      <button class="checkout-btn" type="button" onclick="bosPayPalCheckout()">Payer par Carte ou PayPal</button>
       <p class="cart-note">Paiement sécurisé par PayPal (carte bancaire acceptée) · Livraison 12-20j · Retour 14j</p>
     </div>
   </div>
@@ -646,7 +647,7 @@ function renderProducts() {
           </div>
           <button class="add-to-cart" onclick="addToCart('${p.id}')">Ajouter →</button>
         </div>
-        <button class="buy-now-btn" type="button" onclick="bosBuyNow('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.id}')">Acheter maintenant (PayPal · CB)</button>
+        <button class="buy-now-btn" type="button" onclick="bosBuyNow('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.id}')">Payer par Carte ou PayPal</button>
       </div>
     </div>
   `).join('');
@@ -730,8 +731,18 @@ function renderCartItems() {
       <button class="remove-item" onclick="removeItem('${item.id}')" title="Supprimer">✕</button>
     </div>
   `).join('');
-  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
-  document.getElementById('cartTotal').textContent = total.toFixed(2).replace('.', ',') + '€';
+  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const maxPrice = cart.length > 0 ? Math.max(...cart.map(i => i.price)) : 0;
+  const discount = maxPrice * 0.10;
+  const total = subtotal - discount;
+  const totalEl = document.getElementById('cartTotal');
+  if (discount > 0) {
+    totalEl.innerHTML = '<span style="text-decoration:line-through;color:#9ca3af;font-size:14px;margin-right:8px">' + subtotal.toFixed(2).replace('.', ',') + '€</span><span style="color:#10b981">' + total.toFixed(2).replace('.', ',') + '€</span>';
+    const promoEl = document.getElementById('cartPromo');
+    if (promoEl) { promoEl.style.display = 'block'; promoEl.textContent = '🎉 -10% appliqué sur le produit le + cher'; }
+  } else {
+    totalEl.textContent = total.toFixed(2).replace('.', ',') + '€';
+  }
 }
 
 function changeQty(id, delta) {
