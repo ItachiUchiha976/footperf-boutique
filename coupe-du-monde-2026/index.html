@@ -154,7 +154,7 @@ footer { background: var(--green); color: rgba(255,255,255,0.75); padding: 2.5re
 <nav>
   <div class="nav-inner">
     <a href="/" class="logo">Foot<span>Perf</span></a>
-    <a href="#acheter" class="nav-cta">Télécharger — 4,90 €</a>
+    <a href="#acheter" class="nav-cta">Ajouter au panier</a>
   </div>
 </nav>
 
@@ -186,8 +186,8 @@ footer { background: var(--green); color: rgba(255,255,255,0.75); padding: 2.5re
         <span class="price">4,90 €</span>
         <span class="price-note">PDF · 28 pages · téléchargement immédiat</span>
       </div>
-      <button class="btn-buy" onclick="bosBuyNow('Guide & Grand Quiz Coupe du Monde 2026 (PDF)', 4.90, 'guide-cdm2026')">
-        Télécharger mon guide — 4,90 €
+      <button class="btn-buy" onclick="addToCartCDM()">
+        Ajouter au panier — 4,90 €
       </button>
       <div class="pay-reassure">🔒 Paiement sécurisé PayPal ou carte bancaire · aucun compte requis</div>
 
@@ -275,8 +275,8 @@ footer { background: var(--green); color: rgba(255,255,255,0.75); padding: 2.5re
     <span class="price">4,90 €</span>
     <span class="price-note">Paiement unique · pas d'abonnement</span>
   </div>
-  <button class="btn-buy" onclick="bosBuyNow('Guide & Grand Quiz Coupe du Monde 2026 (PDF)', 4.90, 'guide-cdm2026')">
-    Télécharger mon guide — 4,90 €
+  <button class="btn-buy" onclick="addToCartCDM()">
+    Ajouter au panier — 4,90 €
   </button>
 </div>
 
@@ -384,5 +384,24 @@ footer { background: var(--green); color: rgba(255,255,255,0.75); padding: 2.5re
 })();
 </script>
 
+<script src="../bos-stripe.js"></script>
 </body>
 </html>
+
+<script>
+// Mini addToCart pour le guide CDM (même clé localStorage que FootPerf)
+function addToCartCDM() {
+  var key = 'footperf_cart';
+  var cart = JSON.parse(localStorage.getItem(key) || '[]');
+  var existing = cart.find(function(i) { return i.id === 'guide-cdm2026'; });
+  if (existing) { existing.qty++; }
+  else { cart.push({ id: 'guide-cdm2026', name: 'Guide & Grand Quiz Coupe du Monde 2026 (PDF)', price: 4.90, img: 'img/preview-cover.png', qty: 1 }); }
+  localStorage.setItem(key, JSON.stringify(cart));
+  // Feedback visuel
+  var t = document.createElement('div');
+  t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:99999;background:#10b981;color:#fff;padding:12px 24px;border-radius:8px;font-weight:700';
+  t.textContent = '✅ Ajouté au panier !';
+  document.body.appendChild(t);
+  setTimeout(function() { t.remove(); }, 2000);
+}
+</script>
