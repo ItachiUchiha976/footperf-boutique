@@ -647,7 +647,7 @@ function renderProducts() {
           </div>
           <button class="add-to-cart" onclick="addToCart('${p.id}')">Ajouter →</button>
         </div>
-        <button class="buy-now-btn" type="button" onclick="bosBuyNow('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.id}')">Payer par PayPal</button>
+        <a href="#panier" class="buy-now-btn" onclick="addToCart('${p.id}'); openCart()" style="text-decoration:none;display:block;text-align:center">🛒 Voir le panier</a>
       </div>
     </div>
   `).join('');
