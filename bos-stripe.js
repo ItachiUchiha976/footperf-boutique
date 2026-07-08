@@ -181,7 +181,8 @@
   }
 
   function init() {
-    var isCart = location.pathname.indexOf('panier') !== -1;
+    // Détecter page panier OU panier intégré (FootPerf one-page)
+    var isCart = location.pathname.indexOf('panier') !== -1 || !!document.getElementById('cartFooter');
     if (isCart) {
       addStripeButton(null);
     } else {
