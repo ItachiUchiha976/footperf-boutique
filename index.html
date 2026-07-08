@@ -526,6 +526,7 @@
         <span id="cartTotal">0,00€</span>
       </div>
       <button class="checkout-btn btn-checkout" type="button" onclick="bosPayPalCheckout()">Payer par PayPal</button>
+      <div id="stripe-btn-container"></div>
       <p class="cart-note">Paiement sécurisé par PayPal (carte bancaire acceptée) · Livraison 12-20j · Retour 14j</p>
     </div>
   </div>
@@ -736,6 +737,7 @@ function renderCartItems() {
   const discount = maxPrice * 0.10;
   const total = subtotal - discount;
   const totalEl = document.getElementById('cartTotal');
+  setTimeout(function() { if (window.initStripe) window.initStripe(); }, 200);
   if (discount > 0) {
     totalEl.innerHTML = '<span style="text-decoration:line-through;color:#9ca3af;font-size:14px;margin-right:8px">' + subtotal.toFixed(2).replace('.', ',') + '€</span><span style="color:#10b981">' + total.toFixed(2).replace('.', ',') + '€</span>';
     const promoEl = document.getElementById('cartPromo');

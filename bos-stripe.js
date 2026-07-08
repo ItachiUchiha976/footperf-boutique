@@ -195,4 +195,7 @@
   } else {
     init();
   }
+
+  // Exposer pour les paniers dynamiques (FootPerf)
+  window.initStripe = init;
 })();
