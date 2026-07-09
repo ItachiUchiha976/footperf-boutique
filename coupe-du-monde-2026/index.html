@@ -152,8 +152,11 @@ footer { background: var(--green); color: rgba(255,255,255,0.75); padding: 2.5re
 <body>
 <nav style="background:#0d3b2a;padding:0 1.5rem;position:sticky;top:0;z-index:100">
   <div style="max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:50px">
-    <a href="../index.html" style="color:#c8f000;text-decoration:none;font-weight:900;font-size:1.1rem">⚽ FootPerf</a>
-    <a href="../index.html#panier" style="color:#fff;text-decoration:none;font-weight:700;font-size:.85rem;background:#c8f000;color:#0d3b2a;padding:6px 14px;border-radius:6px">🛒 Panier</a>
+    <div style="display:flex;align-items:center;gap:20px">
+      <a href="../index.html" style="color:#c8f000;text-decoration:none;font-weight:900;font-size:1.1rem">⚽ FootPerf</a>
+      <a href="../index.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:.8rem">← Accueil boutique</a>
+    </div>
+    <a href="../index.html#panier" style="position:relative;background:#c8f000;color:#0d3b2a;text-decoration:none;font-weight:700;font-size:.85rem;padding:6px 14px;border-radius:6px">🛒 Panier <span id="cdm-cart-count" style="display:none;position:absolute;top:-6px;right:-6px;background:#e03131;color:#fff;border-radius:50%;width:18px;height:18px;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center">0</span></a>
   </div>
 </nav>
 
@@ -396,6 +399,7 @@ footer { background: var(--green); color: rgba(255,255,255,0.75); padding: 2.5re
 
 <script>
 // Mini addToCart pour le guide CDM (même clé localStorage que FootPerf)
+document.addEventListener("DOMContentLoaded",function(){var c=JSON.parse(localStorage.getItem("footperf_cart")||"[]");var n=c.reduce(function(s,i){return s+(i.qty||1)},0);var b=document.getElementById("cdm-cart-count");if(b){b.textContent=n;b.style.display=n>0?"flex":"none"}});
 function addToCartCDM() {
   var key = 'footperf_cart';
   var cart = JSON.parse(localStorage.getItem(key) || '[]');
@@ -403,6 +407,10 @@ function addToCartCDM() {
   if (existing) { existing.qty++; }
   else { cart.push({ id: 'guide-cdm2026', name: 'Guide & Grand Quiz Coupe du Monde 2026 (PDF)', price: 4.90, img: 'img/preview-cover.png', qty: 1 }); }
   localStorage.setItem(key, JSON.stringify(cart));
+  // Mettre à jour le badge
+  var n = cart.reduce(function(s,i) { return s + (i.qty || 1); }, 0);
+  var b = document.getElementById('cdm-cart-count');
+  if (b) { b.textContent = n; b.style.display = n > 0 ? 'flex' : 'none'; }
   // Feedback visuel
   var t = document.createElement('div');
   t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:99999;background:#10b981;color:#fff;padding:12px 24px;border-radius:8px;font-weight:700';
