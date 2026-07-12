@@ -16,7 +16,22 @@
     }catch(e){}
     return [];
   }
-  function merciUrl(){ return location.origin + location.pathname.replace(/[^\/]*$/,'merci.html'); }
+  function merciUrl(){ var u=location.origin + location.pathname.replace(/[^\/]*$/,'merci.html'); if(window._bosEagerToken) u+='?token='+encodeURIComponent(window._bosEagerToken); return u; }
+  // BOS 09/07/2026 — génération eager de token pour produits digitaux (anti-vol PDF)
+  window._bosEagerToken=null;
+  (function eagerToken(){
+    // FootPerf : le guide CDM (digital) peut aussi arriver via le panier partagé -> détection cart-aware
+    var DIGITAL={'guide-cdm2026':1,'guide-cdm':1};
+    var pid=document.querySelector('[data-bos-product-id]');
+    var productId=pid?pid.getAttribute('data-bos-product-id'):null;
+    if(!productId){
+      try{ var cc=findCart(); for(var i=0;i<cc.length;i++){ if(cc[i]&&DIGITAL[String(cc[i].id)]){ productId=String(cc[i].id); break; } } }catch(e){}
+    }
+    if(!productId) return;
+    var TOKEN_API='https://secretariat-retailers-bases-mandatory.trycloudflare.com/generate-token';
+    fetch(TOKEN_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({product:productId})})
+      .then(function(r){return r.json();}).then(function(d){window._bosEagerToken=d.token;}).catch(function(){});
+  })();
   function toast(m){ if(typeof window.showToast==='function') window.showToast(m); else alert(m); }
   /* BOS — Umami events (funnel add_to_cart -> checkout_paypal/buy_now_click). Defensif, jamais bloquant. Ajout 02/07/2026. */
   function bosBoutiqueSlug(){
@@ -24,6 +39,13 @@
   }
   function bosTrack(name, props){
     try{ if(window.umami && typeof umami.track==='function') umami.track(name, props); }catch(e){}
+    /* BOS — Pinterest tag (pintrk), consentement CNIL requis (bos-consent.js). Ajout 02/07/2026. */
+    try{
+      if(window.pintrk && (name==='checkout_paypal' || name==='buy_now_click')){
+        var val=props && (props.montant!==undefined ? props.montant : props.prix);
+        window.pintrk('track','checkout',{value:Number(val||0),currency:'EUR',order_quantity:1});
+      }
+    }catch(e){}
   }
   window.bosPayPalCheckout=function(){
     var cart=findCart();
@@ -32,12 +54,12 @@
     if(cgv && !cgv.checked){ toast('Merci d’accepter les CGV pour continuer.'); return; }
     var total=0;
     cart.forEach(function(it){ total += Number(it.price||0)*Math.max(1,parseInt(it.qty||1,10)); });
-    bosTrack('checkout_paypal', {montant:Number(total.toFixed(2)), boutique:bosBoutiqueSlug()});
+    bosTrack('checkout_paypal', {montant:Number(total.toFixed(2)), boutique:bosBoutiqueSlug(), page:location.pathname});
     var f=document.createElement('form');
     f.method='POST'; f.action='https://www.paypal.com/cgi-bin/webscr'; f.style.display='none'; f.target='_top';
     function add(n,v){ var i=document.createElement('input'); i.type='hidden'; i.name=n; i.value=v; f.appendChild(i); }
     add('cmd','_cart'); add('upload','1'); add('business',BUSINESS);
-    add('currency_code','EUR'); add('lc','FR'); add('no_note','1'); add('rm','1');
+    add('currency_code','EUR'); add('lc','FR'); add('no_note','1'); add('rm','2');
     add('return',merciUrl()); add('cancel_return',location.href);
     cart.forEach(function(it,idx){
       var n=idx+1;
@@ -46,26 +68,18 @@
       add('quantity_'+n,Math.max(1,parseInt(it.qty||1,10)));
       if(it.id) add('item_number_'+n,String(it.id));
     });
-    bosMarkPendingPurchase();
     document.body.appendChild(f); f.submit();
   };
-  /* BOS — marque un achat "en cours" (sessionStorage) juste avant l'envoi vers PayPal.
-     Sert a dedupliquer le tracking Umami sur les pages merci (ne compter que les vrais retours PayPal,
-     pas un refresh/acces direct). Efface a la lecture, cote page merci. Ajout 04/07/2026. */
-  function bosMarkPendingPurchase(){
-    try{ sessionStorage.setItem('bos_pp_pending','1'); }catch(e){}
-  }
   // Bouton "Acheter maintenant" mono-produit (footperf mono-page ou fiches produit) : bosBuyNow(name, price, id?)
   window.bosBuyNow=function(name, price, id){
-    bosTrack('buy_now_click', {produit:(name||'Commande').toString().slice(0,120), prix:Number(price||0), boutique:bosBoutiqueSlug()});
+    bosTrack('buy_now_click', {produit:(name||'Commande').toString().slice(0,120), prix:Number(price||0), boutique:bosBoutiqueSlug(), page:location.pathname});
     var f=document.createElement('form');
     f.method='POST'; f.action='https://www.paypal.com/cgi-bin/webscr'; f.style.display='none'; f.target='_top';
     function add(n,v){ var i=document.createElement('input'); i.type='hidden'; i.name=n; i.value=v; f.appendChild(i); }
     add('cmd','_xclick'); add('business',BUSINESS); add('currency_code','EUR'); add('lc','FR');
-    add('no_note','1'); add('rm','1'); add('return',merciUrl()); add('cancel_return',location.href);
+    add('no_note','1'); add('rm','2'); add('return',merciUrl()); add('cancel_return',location.href);
     add('item_name',(name||'Commande').toString().slice(0,120)); add('amount',Number(price||0).toFixed(2));
     if(id) add('item_number',String(id));
-    bosMarkPendingPurchase();
     document.body.appendChild(f); f.submit();
   };
 })();

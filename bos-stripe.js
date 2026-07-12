@@ -117,6 +117,21 @@
     return 0;
   }
 
+
+  // BOS 12/07/2026 — ids du panier pour la détection produit digital côté serveur (token ebook)
+  function getCartProductIds() {
+    var ids = [];
+    try {
+      var keys = ['footperf_cart'];
+      for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (k && /_cart$/i.test(k) && keys.indexOf(k) === -1) keys.push(k); }
+      for (var c = 0; c < keys.length; c++) {
+        var cart = JSON.parse(localStorage.getItem(keys[c]) || '[]');
+        if (cart.length) { for (var j = 0; j < cart.length; j++) { if (cart[j] && cart[j].id) ids.push(String(cart[j].id)); } break; }
+      }
+    } catch(e) {}
+    return ids;
+  }
+
   var _stripeDone = false;
   function addStripeButton(productKey) {
     if (_stripeDone) return;
@@ -158,7 +173,7 @@
         fetch(STRIPE_API, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ amount: total, currency: 'eur' }),
+          body: JSON.stringify({ amount: total, currency: 'eur', boutique: 'footperf', products: getCartProductIds() }),
         })
         .then(function(r) { return r.json(); })
         .then(function(data) {

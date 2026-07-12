@@ -85,6 +85,27 @@
   </div>
 </section>
 
+
+<!-- BOS 12/07/2026 — livraison digitale sécurisée par token (guide CDM acheté via le panier, §12.35) -->
+<section class="suivi-section" id="digital-dl" style="display:none">
+  <div class="suivi-box">
+    <h2>📘 Ton produit numérique est prêt</h2>
+    <p>Ta commande contient le Guide &amp; Grand Quiz CDM 2026 (PDF) — télécharge-le maintenant :</p>
+    <a class="btn-primary" id="bosDlBtn" href="#">⬇️ Télécharger mon guide (PDF)</a>
+    <p class="suivi-fine" style="margin-top:1rem">Lien valable 24 h, usage unique. Un souci ? <a href="mailto:contact@footperf.fr">contact@footperf.fr</a> — on te renvoie le fichier sous 24 h.</p>
+  </div>
+</section>
+<script>
+(function(){
+  var t = new URLSearchParams(location.search).get('token');
+  if (!t) return;
+  var sec = document.getElementById('digital-dl');
+  var btn = document.getElementById('bosDlBtn');
+  btn.href = 'https://secretariat-retailers-bases-mandatory.trycloudflare.com/download/' + encodeURIComponent(t);
+  sec.style.display = 'block';
+})();
+</script>
+
 <!-- SUIVI COMMANDE -->
 <section class="suivi-section">
   <div class="suivi-box">

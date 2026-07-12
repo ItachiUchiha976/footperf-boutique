@@ -41,10 +41,14 @@ h1 { font-size:1.6rem; font-weight:900; margin-bottom:0.7rem; }
     <h1>Merci pour ta commande !</h1>
     <p class="sub">Ton paiement est confirmé. Ton Guide &amp; Grand Quiz de la Coupe du Monde 2026 est prêt — télécharge-le maintenant :</p>
 
-    <a class="btn-dl" href="dl/guide-cdm2026-2v9x7k3q.pdf" download="Guide-Grand-Quiz-CoupeDuMonde-2026.pdf">
-      ⬇️ Télécharger mon guide (PDF)
+    <a class="btn-dl" id="downloadBtn" href="#" style="pointer-events:none;opacity:0.7;">
+      ⏳ Préparation du téléchargement...
     </a>
-    <p class="dl-note">28 pages · format PDF · lisible sur mobile, tablette et ordinateur</p>
+    <p class="dl-note" id="dl-message">28 pages · format PDF · lisible sur mobile, tablette et ordinateur</p>
+
+    <div class="mail-box" id="dl-error-box" style="display:none;">
+      💾 <strong>Lien expiré ou déjà utilisé.</strong> Envoie-nous un email à <a href="mailto:contact@footperf.fr">contact@footperf.fr</a> avec ta confirmation de paiement, on te renvoie le fichier sous 24 h.
+    </div>
 
     <div class="mail-box">
       💾 <strong>Pense à enregistrer ton PDF</strong> une fois téléchargé (dans tes fichiers ou ton drive) : tu le retrouveras à tout moment. Sur mobile, le fichier atterrit en général dans le dossier « Téléchargements ».
@@ -69,5 +73,25 @@ h1 { font-size:1.6rem; font-weight:900; margin-bottom:0.7rem; }
   } catch(e){}
 </script>
 
+<script>
+  // BOS 12/07/2026 — téléchargement sécurisé par token (anti-vol PDF, §12.35)
+  var TOKEN_API = 'https://secretariat-retailers-bases-mandatory.trycloudflare.com/download/';
+  var token = new URLSearchParams(location.search).get('token');
+  var btn = document.getElementById('downloadBtn');
+  var msg = document.getElementById('dl-message');
+  var errBox = document.getElementById('dl-error-box');
+  if (token) {
+    btn.href = TOKEN_API + encodeURIComponent(token);
+    btn.textContent = '⬇️ Télécharger mon guide (PDF)';
+    btn.style.pointerEvents = 'auto';
+    btn.style.opacity = '1';
+    msg.textContent = '28 pages · format PDF · cliquer pour télécharger';
+  } else {
+    btn.textContent = '⚠️ Téléchargement indisponible';
+    btn.style.opacity = '0.5';
+    btn.href = '#';
+    if (errBox) errBox.style.display = 'block';
+  }
+</script>
 </body>
 </html>
