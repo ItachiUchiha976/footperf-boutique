@@ -28,7 +28,7 @@
       try{ var cc=findCart(); for(var i=0;i<cc.length;i++){ if(cc[i]&&DIGITAL[String(cc[i].id)]){ productId=String(cc[i].id); break; } } }catch(e){}
     }
     if(!productId) return;
-    var TOKEN_API='https://secretariat-retailers-bases-mandatory.trycloudflare.com/generate-token';
+    var TOKEN_API='https://api.tonargentexplique.fr/generate-token';
     fetch(TOKEN_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({product:productId})})
       .then(function(r){return r.json();}).then(function(d){window._bosEagerToken=d.token;}).catch(function(){});
   })();
