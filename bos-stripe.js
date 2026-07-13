@@ -257,7 +257,7 @@
   'use strict';
   var API = 'https://api.tonargentexplique.fr/create-checkout-session';
   var BOUTIQUE = 'footperf';
-  var CART_KEY = 'footperf_cart';
+  var CART_KEY = 'footperf_v2_cart';
   var ID_TO_FULFILL = {};
 
   function items(){
