@@ -202,6 +202,60 @@
     .order-success { display: none; text-align: center; padding: 2rem 1.5rem; }
     .order-success h3 { color: var(--green); font-size: 1.3rem; margin-bottom: 0.8rem; }
 
+    /* ===== KIT CONVERSION BOS (13/07/2026) ===== */
+    /* Fiche produit phare */
+    #hero-produit { background: var(--white); border-bottom: 1px solid var(--gray-200); }
+    .fiche-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
+    @media (max-width: 900px) { .fiche-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
+    .fiche-main-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--gray-200); background: var(--gray-50); }
+    .fiche-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; margin-top: 0.7rem; }
+    .fiche-thumbs img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; border: 1px solid var(--gray-200); cursor: pointer; background: var(--gray-50); transition: border-color 0.15s, transform 0.15s; }
+    .fiche-thumbs img:hover, .fiche-thumbs img.active { border-color: var(--green); transform: translateY(-2px); }
+    .fiche-eyebrow { display: inline-block; background: var(--lime); color: var(--green); font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; padding: 0.3rem 0.75rem; border-radius: 100px; margin-bottom: 0.9rem; }
+    .fiche-title { font-size: clamp(1.5rem, 3.2vw, 2.1rem); font-weight: 900; line-height: 1.2; margin-bottom: 0.6rem; }
+    .fiche-price-row { display: flex; align-items: baseline; gap: 0.7rem; margin-bottom: 1.1rem; flex-wrap: wrap; }
+    .fiche-price { font-size: 2rem; font-weight: 900; color: var(--green); }
+    .fiche-price-note { font-size: 0.85rem; color: var(--gray-600); font-weight: 600; }
+    .bos-kit-benefit { background: #f7ffd6; border-left: 4px solid var(--lime); border-radius: 8px; padding: 0.85rem 1rem; font-size: 0.95rem; line-height: 1.55; color: var(--gray-800); margin-bottom: 1.2rem; }
+    .bos-kit-benefit strong { color: var(--gray-900); }
+    .bos-kit-bullets { margin-bottom: 1.4rem; }
+    .bos-kit-bullets h3 { font-size: 1rem; font-weight: 800; margin-bottom: 0.6rem; }
+    .bos-kit-bullets ul { list-style: none; display: grid; gap: 0.45rem; }
+    .bos-kit-bullets li { font-size: 0.9rem; line-height: 1.5; color: var(--gray-800); }
+    .fiche-actions { display: grid; gap: 0.6rem; margin-bottom: 0.8rem; }
+    .fiche-add { width: 100%; background: var(--green); color: var(--white); border: none; border-radius: 10px; padding: 1rem; font-size: 1rem; font-weight: 800; cursor: pointer; transition: background 0.15s, transform 0.15s; }
+    .fiche-add:hover { background: var(--green-light); transform: translateY(-1px); }
+    .fiche-paypal { width: 100%; background: #003087; color: white; border: none; border-radius: 10px; padding: 1rem; font-size: 1rem; font-weight: 800; cursor: pointer; transition: background 0.15s, transform 0.15s; }
+    .fiche-paypal:hover { background: #001c64; transform: translateY(-1px); }
+    .checkout-stripe { text-align: center; }
+    .cta-micro-note { font-size: 0.78rem; color: var(--gray-600); text-align: center; line-height: 1.5; }
+    .bos-kit-included { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 10px; padding: 1rem 1.1rem; margin-top: 1.4rem; }
+    .bos-kit-included h4, .bos-kit-included summary { font-size: 0.9rem; font-weight: 800; margin-bottom: 0.5rem; cursor: default; }
+    .bos-kit-included ul { list-style: none; display: grid; gap: 0.3rem; }
+    .bos-kit-included li { font-size: 0.86rem; color: var(--gray-800); line-height: 1.5; display: flex; gap: 0.45rem; }
+    .bos-kit-included li::before { content: '›'; color: var(--green-light); font-weight: 800; }
+    .bos-kit-honest { font-size: 0.78rem; color: var(--gray-600); margin-top: 0.6rem; line-height: 1.5; font-style: italic; }
+
+    /* Carte catalogue enrichie */
+    .card-benefit { background: #f7ffd6; border-left: 3px solid var(--lime); border-radius: 6px; padding: 0.55rem 0.7rem; font-size: 0.82rem; line-height: 1.45; color: var(--gray-800); margin-bottom: 0.8rem; }
+    details.card-faq { margin-top: 0.7rem; border-top: 1px solid var(--gray-100); padding-top: 0.6rem; }
+    details.card-faq summary { font-size: 0.8rem; font-weight: 700; color: var(--gray-800); cursor: pointer; list-style: none; }
+    details.card-faq summary::-webkit-details-marker { display: none; }
+    details.card-faq summary::before { content: '▸ '; color: var(--green-light); }
+    details.card-faq[open] summary::before { content: '▾ '; }
+    details.card-faq .faq-a { font-size: 0.8rem; color: var(--gray-600); line-height: 1.5; margin-top: 0.5rem; }
+    details.card-faq .faq-q { font-size: 0.8rem; font-weight: 700; color: var(--gray-800); margin-top: 0.6rem; }
+
+    /* FAQ objections */
+    #faq { background: var(--gray-50); }
+    .faq-list { display: grid; gap: 0.8rem; max-width: 800px; margin: 0 auto; }
+    .faq-item { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 1rem 1.2rem; }
+    .faq-item summary { font-weight: 700; font-size: 0.95rem; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 1rem; align-items: center; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: '+'; font-size: 1.3rem; font-weight: 400; color: var(--green-light); flex-shrink: 0; }
+    .faq-item[open] summary::after { content: '−'; }
+    .faq-item p { font-size: 0.9rem; color: var(--gray-600); line-height: 1.65; margin-top: 0.7rem; }
+
     /* RESPONSIVE */
     @media (max-width: 768px) {
       .nav-links { display: none; }
@@ -275,6 +329,79 @@
   <a href="coupe-du-monde-2026/" style="display:block;background:var(--green);color:var(--white);text-align:center;padding:0.9rem 1rem;font-weight:600;text-decoration:none;line-height:1.45">
     📘 Le Guide &amp; Grand Quiz de la Coupe du Monde 2026 (PDF, 28 pages) — palmarès, records, quiz de 75 questions — <span style="color:var(--lime);text-decoration:underline">4,90&nbsp;€ · Télécharger →</span>
   </a>
+
+  <!-- ============================================================
+       FICHE PRODUIT PHARE (kit conversion BOS — 13/07/2026)
+       ⚠️ §12.23 : visuels = photos RÉELLES du SKU CJ expédié (CJJT126614301AZ),
+       specs = fiche fournisseur (polyester + fibre de verre, 120x80x80 cm,
+       2,27 kg, coloris orange fluo, colisage : 2 buts). Aucune promesse inventée.
+       ============================================================ -->
+  <section id="hero-produit">
+    <div class="container">
+      <div class="fiche-grid">
+
+        <!-- Colonne visuels -->
+        <div>
+          <img src="img/but-popup-pliable.jpg" alt="Set de 2 buts de foot pop-up pliables orange — produit réellement expédié" class="fiche-main-img" id="ficheMainImg">
+          <div class="fiche-thumbs">
+            <img src="img/but-popup-pliable.jpg" alt="Les 2 buts pop-up" class="active" onclick="setFicheImg(this)">
+            <img src="img/but-cj-lifestyle.jpg" alt="But pop-up monté sur pelouse" onclick="setFicheImg(this)">
+            <img src="img/but-cj-dimensions.jpg" alt="Dimensions du but pop-up" onclick="setFicheImg(this)">
+            <img src="img/but-cj-replie.jpg" alt="But pop-up replié à plat" onclick="setFicheImg(this)">
+          </div>
+        </div>
+
+        <!-- Colonne achat -->
+        <div>
+          <span class="fiche-eyebrow">⭐ Produit phare — Coupe du Monde 2026</span>
+          <h2 class="fiche-title">Set de 2 Buts de Foot Pop-Up Pliables</h2>
+          <div class="fiche-price-row">
+            <span class="fiche-price">44,00 €</span>
+            <span class="fiche-price-note">Livraison offerte · les 2 buts inclus</span>
+          </div>
+
+          <p class="bos-kit-benefit">
+            « Papa, tu joues avec moi&nbsp;? » — et toi, tu n'as pas 2 heures.
+            <strong>Deux vraies cages qui se déplient en quelques secondes</strong>&nbsp;: ton enfant installe son terrain
+            tout seul dans le jardin, joue de vrais matchs avec ses copains… et lâche l'écran sans que tu aies à le lui demander.
+          </p>
+
+          <div class="bos-kit-bullets">
+            <h3>✨ Pourquoi vous allez l'adorer</h3>
+            <ul>
+              <li>⚡ <strong>Déplié en quelques secondes</strong> — armature fibre de verre à ressort : on sort le but, il se monte seul. Replié, il tient à plat.</li>
+              <li>🥅 <strong>Deux buts, pas un seul</strong> — de vrais matchs 1 contre 1, pas juste des tirs dans le vide.</li>
+              <li>🪶 <strong>2,3 kg le set</strong> — un enfant le porte et l'installe sans aide. Jardin, parc, plage.</li>
+              <li>🎯 <strong>Format 120 × 80 × 80 cm</strong> — assez grand pour un vrai but, assez compact pour un jardin.</li>
+            </ul>
+          </div>
+
+          <!-- Clé produit pour bos-stripe.js (findProductKey échoue sur index.html) -->
+          <span data-stripe-product="buts-pop-up" hidden></span>
+
+          <div class="fiche-actions">
+            <button class="fiche-add" onclick="addToCart('buts-pop-up')">🛒 Ajouter au panier — 44,00 €</button>
+            <button class="fiche-paypal" onclick="bosBuyNow('Set de 2 Buts de Foot Pop-Up Pliables', 44.00, 'buts-pop-up')">Acheter maintenant avec PayPal</button>
+            <div class="checkout-stripe"></div>
+          </div>
+          <p class="cta-micro-note">🔒 Paiement sécurisé (CB ou PayPal, sans créer de compte) · 🚚 Livraison offerte, estimée 12 à 20 jours ouvrés · ↩️ 14 jours pour changer d'avis</p>
+
+          <div id="bos-trust-mount"></div>
+
+          <div class="bos-kit-included">
+            <h4>📦 Ce que vous recevez</h4>
+            <ul>
+              <li>2 buts de foot pop-up pliables, coloris orange fluo</li>
+              <li>Chaque but : env. 120 × 80 × 80 cm — armature fibre de verre, toile polyester</li>
+              <li>Poids total du colis : environ 2,3 kg</li>
+            </ul>
+            <p class="bos-kit-honest">Transparence : la liste de colisage du fournisseur garantit <strong>les 2 buts</strong>. Des piquets d'ancrage apparaissent sur certains visuels du fabricant mais ne sont pas garantis dans le colis — on préfère te le dire avant que tu commandes.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   <!-- PRODUITS -->
   <section id="produits">
@@ -360,6 +487,42 @@
           <div class="why-title">Exactement la photo</div>
           <div class="why-desc">Les visuels correspondent au produit réellement expédié&nbsp;: tu reçois ce que tu vois, sans mauvaise surprise.</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ OBJECTIONS (kit conversion BOS — 13/07/2026) -->
+  <section id="faq">
+    <div class="container">
+      <div class="avis-header">
+        <h2 class="section-title">Les questions qu'on nous pose avant de commander</h2>
+        <p class="section-sub">Réponses honnêtes, sans langue de bois. Une autre question&nbsp;? <a href="mailto:contact@footperf.fr" style="color:var(--green-light);font-weight:700">contact@footperf.fr</a></p>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>En combien de temps je reçois ma commande ?</summary>
+          <p>Comptez <strong>12 à 20 jours ouvrés</strong>. On joue franc-jeu : nos équipements sont expédiés depuis nos fournisseurs internationaux (Chine), ce qui nous permet de vous proposer 2 buts à 44 € au lieu de 90 € en magasin. Vous recevez un numéro de suivi dès l'expédition. Si vous avez besoin du matériel pour demain, ce n'est pas la bonne boutique — et on préfère vous le dire tout de suite.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Et si le produit ne me convient pas ?</summary>
+          <p><strong>14 jours pour changer d'avis</strong>, sans avoir à vous justifier (article L221-18 du Code de la consommation). Vous nous écrivez à contact@footperf.fr, on vous envoie une étiquette de retour, et vous êtes remboursé intégralement sous 5 à 7 jours ouvrés après réception du retour.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Je vais bien recevoir exactement le produit des photos ?</summary>
+          <p>Oui. Les photos de cette page sont <strong>les photos du produit réellement expédié</strong> par notre fournisseur — pas des images de synthèse ni des visuels d'un autre modèle. Le set de buts est <strong>orange fluo</strong>, tel qu'il apparaît sur les photos. Si le produit reçu ne correspond pas, envoyez-nous une photo : remplacement ou remboursement immédiat.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Le paiement est-il sécurisé ?</summary>
+          <p>Oui. Deux options, toutes les deux chiffrées : <strong>carte bancaire via Stripe</strong> ou <strong>PayPal</strong> (la CB fonctionne aussi via PayPal sans créer de compte). Vos coordonnées bancaires ne transitent jamais par notre site et ne nous sont jamais transmises.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Le set de buts convient à quel âge ?</summary>
+          <p>Chaque but mesure environ <strong>120 cm de large sur 80 cm de haut</strong>. C'est le format idéal pour les enfants et ados (env. 4-14 ans) qui jouent dans un jardin, un parc ou sur une plage — et pour les adultes qui veulent travailler la précision de leur frappe. Le set entier pèse ~2,3 kg : un enfant l'installe seul.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Les buts tiennent-ils dehors, par temps venteux ?</summary>
+          <p>La toile est en polyester et l'armature en fibre de verre : ils sont conçus pour l'extérieur (jardin, herbe, sable) et ne rouillent pas. Honnêtement : ce sont des buts <strong>pop-up ultra-légers</strong> (2,3 kg le set), donc par vent fort, il faut les lester ou les ancrer au sol — comme tous les buts pop-up du marché. Ils se replient à plat en quelques secondes, on les rentre en fin de partie.</p>
+        </details>
       </div>
     </div>
   </section>
@@ -512,13 +675,22 @@
 // ============================================================
 // CATALOGUE PRODUITS
 // ============================================================
+// ⚠️ Les `id` DOIVENT correspondre aux clés de /root/bos/fulfillment_products.json (VPS).
+// Sinon resolve_products() renvoie « metadata.products non mappés » et AUCUNE commande
+// fournisseur n'est créée après paiement. (Bug corrigé le 13/07/2026 : fp-but → buts-pop-up, etc.)
 const products = [
   {
-    id: 'fp-but',
+    id: 'buts-pop-up',
     name: 'Set de 2 Buts de Foot Pop-Up Pliables',
     shortName: '2 Buts Pop-Up Pliables',
     desc: 'Deux vraies cages qui se déplient en quelques secondes et tiennent partout. Ton enfant joue de vrais matchs et s\'entraîne seul des heures — et décroche de l\'écran.',
-    features: ['Set de 2 buts pop-up 1,80 × 0,90 m — deux cages pour de vrais matchs', 'Se déplient et se replient en quelques secondes', 'Ultra-légers, sac de transport inclus', 'Jardin, parc, plage — montés en un instant'],
+    // Specs = fiche fournisseur du SKU réellement expédié (CJJT126614301AZ) — §12.23
+    features: ['Set de 2 buts pop-up, env. 120 × 80 × 80 cm chacun', 'Armature fibre de verre à ressort : se déplie et se replie en quelques secondes', 'Ultra-légers : ~2,3 kg le set — un enfant l\'installe seul', 'Coloris orange fluo · toile polyester · jardin, parc, plage'],
+    benefit: "Ton enfant installe son terrain tout seul, joue de vrais matchs — et lâche l'écran sans que tu aies à le lui demander.",
+    faq: [
+      { q: 'Ça convient à quel âge ?', a: 'Format 120 × 80 cm par but : idéal pour les enfants et ados (env. 4-14 ans) au jardin, au parc ou à la plage — et pour les adultes qui travaillent la précision.' },
+      { q: 'Ça tient dehors par temps venteux ?', a: 'Conçus pour l\'extérieur (polyester + fibre de verre, ne rouille pas). Honnêtement : à 2,3 kg le set, par vent fort il faut les lester ou les ancrer — comme tous les buts pop-up.' }
+    ],
     price: 44.00,
     img: 'img/but-popup-pliable.jpg',
     isHero: true,
@@ -526,11 +698,16 @@ const products = [
     badge: '⭐ Produit phare — Coupe du Monde 2026'
   },
   {
-    id: 'fp-reflexball',
+    id: 'balle-de-reaction',
     name: 'Balle de Réaction — Rebonds Imprévisibles',
     shortName: 'Balle de Réaction',
     desc: "Une balle à faces multiples qui rebondit dans des directions imprévisibles : l'outil idéal pour aiguiser tes réflexes, ta vitesse de réaction et ta coordination œil-main, seul ou à deux.",
     features: ["Faces multiples = rebonds totalement imprévisibles", "Aiguise réflexes, vitesse de réaction et coordination œil-main", "Caoutchouc résistant, format compact à emporter partout", "Parfaite pour gardiens comme joueurs de champ"],
+    benefit: "Le geste qui sépare un bon gardien d'un gardien qui arrête l'imparable : la réaction. Ici, la balle décide — toi, tu suis. 10 minutes par jour dans un couloir suffisent.",
+    faq: [
+      { q: 'Il faut être deux pour s\'entraîner ?', a: 'Non. La balle rebondit sur un mur ou au sol dans une direction imprévisible : tu peux t\'entraîner seul, c\'est même l\'usage principal.' },
+      { q: 'On peut l\'utiliser à l\'intérieur ?', a: 'Oui, dans un couloir ou un garage. Format compact et caoutchouc : elle rebondit fort, prévois de l\'espace et pas de vase à proximité.' }
+    ],
     price: 24.90,
     img: "img/reaction-ball-real.jpg",
     isHero: false,
@@ -538,11 +715,16 @@ const products = [
     badge: '💥 Réflexes'
   },
   {
-    id: 'fp-ladder',
+    id: 'echelle-agilite',
     name: "Échelle d'Agilité 4 m — Vitesse & Coordination",
     shortName: "Échelle d'Agilité",
     desc: "L'accessoire n°1 des entraînements de vitesse : enchaîne les appuis, gagne en explosivité et en coordination des pieds. Se déroule en 2 secondes, s'emporte partout.",
     features: ["Échelle d'agilité ~4 m à barreaux plats réglables", "Améliore vitesse de pieds, appuis et coordination", "Sac de transport inclus, se range en un instant", "Intérieur comme extérieur, tous niveaux"],
+    benefit: "La vitesse de pieds, ça ne se souhaite pas, ça se travaille. C'est l'outil que tous les clubs sortent à l'échauffement — sauf que là, il est dans ton jardin.",
+    faq: [
+      { q: 'Ça s\'utilise sur quelle surface ?', a: 'Herbe, bitume, parquet de gymnase : les barreaux sont plats, l\'échelle se déroule à même le sol et ne bouge pas pendant les appuis.' },
+      { q: 'Quel exercice pour commencer ?', a: 'Un appui par case, aller-retour, 3 séries. Puis deux appuis par case. La progression vient de la cadence, pas de la complexité.' }
+    ],
     price: 22.90,
     img: "img/agility-ladder-real.jpg",
     isHero: false,
@@ -550,11 +732,16 @@ const products = [
     badge: '⚡ Vitesse de pieds'
   },
   {
-    id: 'fp-gkgloves',
+    id: 'gants-gardien-pro',
     name: 'Gants de Gardien de But — Grip Renforcé',
     shortName: 'Gants de Gardien',
     desc: "Des gants de gardien à paume grip haute adhérence pour capter et repousser les frappes en toute confiance, par tous les temps. Pour l'entraînement comme pour le match.",
     features: ["Paume latex grip haute adhérence, au sec comme sous la pluie", "Maintien poignet ajustable pour un bon serrage", "Protections légères sur le dos des doigts", "Plusieurs tailles enfant et adulte"],
+    benefit: "Un gardien qui a peur du ballon, c'est presque toujours un gardien qui a mal aux mains. Une bonne paume grip, et la confiance revient dès la première parade.",
+    faq: [
+      { q: 'Comment choisir la taille ?', a: 'Mesure la largeur de la paume en cm et ajoute 1 : tu obtiens la taille gardien (ex. 7 cm ≈ taille 8). Dans le doute, prends au-dessus — un gant trop serré fait mal.' },
+      { q: 'Ils s\'utilisent sous la pluie ?', a: 'Oui : la paume latex accroche mieux légèrement humide. Rince-les à l\'eau claire après le match et laisse-les sécher à plat, jamais sur un radiateur.' }
+    ],
     price: 24.90,
     img: "img/gk-gloves-real.jpg",
     isHero: false,
@@ -562,11 +749,16 @@ const products = [
     badge: '🧤 Gardien'
   },
   {
-    id: 'fp-cones',
+    id: 'cones-de-marquage',
     name: "Lot de Cônes Plats d'Entraînement + Support",
     shortName: "Cônes Plats d'Entraînement",
     desc: "Le kit indispensable pour tracer parcours, slaloms et zones : des cônes plats empilables, visibles et increvables, parfaits pour le dribble, la vitesse et les jeux d'appuis.",
     features: ["Cônes plats empilables, plusieurs couleurs vives", "Souples et increvables — on roule dessus sans les casser", "Support de transport inclus, se range en un clin d'œil", "Dribble, slalom, délimitation de zones"],
+    benefit: "Sans repères au sol, un entraînement devient un jeu sans règles. 30 secondes pour poser un parcours — et une séance qui a soudain un but.",
+    faq: [
+      { q: 'On peut marcher ou rouler dessus ?', a: 'Oui : ils sont plats et souples. Un pied ou une roue de vélo dessus, ils reprennent leur forme — c\'est exactement pour ça qu\'ils sont plats et pas coniques.' },
+      { q: 'Ça sert à quoi exactement ?', a: 'Slaloms de dribble, portes de passe, délimitation de zones ou de mini-terrains, parcours de vitesse. C\'est l\'accessoire le plus polyvalent d\'un sac d\'entraînement.' }
+    ],
     price: 14.90,
     img: "img/cones-real.jpg",
     isHero: false,
@@ -574,11 +766,16 @@ const products = [
     badge: '🔺 Parcours'
   },
   {
-    id: 'fp-shin',
+    id: 'protege-tibias-carbone',
     name: 'Protège-Tibias Légers — Match & Entraînement',
     shortName: 'Protège-Tibias',
     desc: "Une protection légère et ergonomique qui absorbe les chocs sans gêner la course. L'essentiel pour jouer sereinement, à l'entraînement comme en compétition.",
     features: ["Coque rigide + mousse absorbante, ultra-légère", "Forme ergonomique qui épouse le tibia", "Maintien sûr, ne glisse pas pendant l'effort", "Tailles enfant et adulte"],
+    benefit: "Un tacle mal placé, et c'est trois semaines sans foot. Ça pèse quelques grammes et ça évite la seule chose qu'un joueur déteste vraiment : regarder les matchs depuis le banc.",
+    faq: [
+      { q: 'Comment choisir la taille ?', a: 'La coque doit couvrir du bas du genou au-dessus de la cheville, sans dépasser. Dans le doute, fie-toi à la taille de chaussure ou à la hauteur du tibia indiquée.' },
+      { q: 'Ils sont obligatoires en club ?', a: 'Oui — en match officiel, l\'arbitre ne laisse pas entrer un joueur sans protège-tibias. Autant en avoir une paire confortable plutôt que celle qui traîne au fond du sac.' }
+    ],
     price: 12.90,
     img: "img/shin-guards-real.jpg",
     isHero: false,
@@ -586,11 +783,16 @@ const products = [
     badge: '🛡️ Protection'
   },
   {
-    id: 'fp-parachute',
+    id: 'parachute-de-resistance',
     name: 'Parachute de Vitesse — Sprint & Explosivité',
     shortName: 'Parachute de Vitesse',
     desc: "Cours contre la résistance de l'air pour développer puissance, explosivité et vitesse de sprint. Se clipse à la ceinture et se largue en un geste pour enchaîner sprint lesté puis libre.",
     features: ["Parachute résistant, ceinture réglable", "Développe puissance, explosivité et vitesse", "Largage rapide pour enchaîner lesté puis libre", "Sac de rangement inclus, tous niveaux"],
+    benefit: "La sensation qui accroche : tu largues le parachute, et sur les 20 mètres suivants tu te sens léger comme jamais. C'est là que la vitesse se construit.",
+    faq: [
+      { q: 'Il faut un terrain particulier ?', a: 'Une ligne droite dégagée de 20 à 40 m suffit : terrain, stade, plage. Le parachute s\'ouvre tout seul dès que tu prends de la vitesse.' },
+      { q: 'C\'est adapté aux ados ?', a: 'Oui, la ceinture est réglable. Commence par 4 à 6 sprints de 20 m, pas plus : le travail de vitesse fatigue le système nerveux, la qualité prime sur la quantité.' }
+    ],
     price: 19.90,
     img: "img/parachute-real.jpg",
     isHero: false,
@@ -614,10 +816,16 @@ function renderProducts() {
       <div class="product-body">
         <div class="product-name">${p.name}</div>
         <div class="product-desc">${p.desc}</div>
+        ${p.benefit ? `<p class="card-benefit">${p.benefit}</p>` : ''}
         <ul class="product-features">
           ${p.features.map(f => `<li>${f}</li>`).join('')}
         </ul>
-        <p class="delivery-tag">🚚 Livraison 12 à 20 jours ouvrés</p>
+        ${p.faq && p.faq.length ? `
+        <details class="card-faq">
+          <summary>Questions fréquentes</summary>
+          ${p.faq.map(f => `<div class="faq-q">${f.q}</div><div class="faq-a">${f.a}</div>`).join('')}
+        </details>` : ''}
+        <p class="delivery-tag">🚚 Livraison 12 à 20 jours ouvrés · ↩️ Retour 14 jours</p>
         <div class="product-footer">
           <div class="price-block">
             <span class="price">${p.price.toFixed(2).replace('.', ',')}€</span>
@@ -648,19 +856,26 @@ function renderComingSoon() {
 // ============================================================
 // PANIER (localStorage)
 // ============================================================
-let cart = JSON.parse(localStorage.getItem('footperf_cart') || '[]');
+// ⚠️ Clé bumpée le 13/07/2026 : les anciens paniers contiennent des ids obsolètes
+// (fp-but, fp-ladder…) qui ne sont PAS mappés côté fulfillment → commande fournisseur
+// jamais créée. On purge l'ancien panier et on repart sur une clé propre.
+// (Le suffixe reste `_cart` : bos-paypal.js / bos-stripe.js détectent les paniers via /_cart$/.)
+const CART_KEY = 'footperf_v2_cart';
+try { localStorage.removeItem('footperf_cart'); } catch (e) {}
 
-function saveCart() { localStorage.setItem('footperf_cart', JSON.stringify(cart)); }
+let cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+
+function saveCart() { localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
 
 // BOS — expose panier pour checkout PayPal cross-page (fix isolation cart multi-boutique, 01/07/2026)
 try {
   window.getCart = function () {
     try {
-      var c = JSON.parse(localStorage.getItem('footperf_cart'));
+      var c = JSON.parse(localStorage.getItem(CART_KEY));
       return Array.isArray(c) ? c : [];
     } catch (e) { return []; }
   };
-  window.BOS_CART_KEY = 'footperf_cart';
+  window.BOS_CART_KEY = CART_KEY;
 } catch (e) {}
 
 function updateCartCount() {
@@ -801,6 +1016,18 @@ function showLegal(pageId) {
 }
 
 // ============================================================
+// GALERIE FICHE PRODUIT PHARE
+// ============================================================
+function setFicheImg(thumb) {
+  const main = document.getElementById('ficheMainImg');
+  if (!main) return;
+  main.src = thumb.src;
+  main.alt = thumb.alt;
+  document.querySelectorAll('.fiche-thumbs img').forEach(i => i.classList.remove('active'));
+  thumb.classList.add('active');
+}
+
+// ============================================================
 // INIT
 // ============================================================
 renderProducts();
@@ -810,7 +1037,10 @@ updateCartCount();
 <!-- umami-start --><script defer src="https://cloud.umami.is/script.js" data-website-id="d0fa94fe-a108-4590-a465-8f0017569370"></script><!-- umami-end -->
 <script src="bos-paypal.js"></script>
 <script src="bos-stripe.js"></script>
-
+<script src="bos-trust.js" defer></script>
+<!-- Pas de bos-reviews.js / reviews-data.js : 0 avis réel remonté par le fournisseur
+     pour ces SKU (API CJ productComments = total 0, vérifié le 13/07/2026).
+     ⛔ Aucun avis inventé (DGCCRF / §12.23). À ajouter dès les premières commandes livrées. -->
 <script src="bos-consent.js?v=1" defer></script>
 </body>
 </html>

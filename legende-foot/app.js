@@ -4,7 +4,7 @@
 (function () {
   "use strict";
 
-  var SITE_URL = "https://itachiuchiha976.github.io/quelle-legende-foot/";
+  var SITE_URL = "https://footperf.fr/legende-foot/";
   var QUIZ_LEN = 10; // questions tirées par partie
 
   // --- état ---
@@ -186,7 +186,7 @@
     ctx.fillText("Et toi, quelle légende es-tu ?", W / 2, 930);
     ctx.fillStyle = "#bcd2c4";
     ctx.font = "500 30px Inter, sans-serif";
-    ctx.fillText("itachiuchiha976.github.io/quelle-legende-foot", W / 2, 985);
+    ctx.fillText("footperf.fr/legende-foot", W / 2, 985);
 
     return c;
   }

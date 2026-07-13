@@ -42,6 +42,9 @@
     'barre-lumineuse-ecran':      'https://buy.stripe.com/cNi8wPd35dLHcuu6sA5Vu0s',
     'balle-de-reaction':          'https://buy.stripe.com/5kQ6oH2orcHDgKK6sA5Vu0t',
     'echelle-d-agilite':          'https://buy.stripe.com/3cIeVdgfh5fbcuu4ks5Vu0u',
+    // Alias : le mapping fulfillment (VPS) indexe 'echelle-agilite' (sans le -d-),
+    // c'est donc cette clé que le catalogue envoie. Même Payment Link.
+    'echelle-agilite':            'https://buy.stripe.com/3cIeVdgfh5fbcuu4ks5Vu0u',
     'cones-de-marquage':          'https://buy.stripe.com/aFa14ngfh8rn52204c5Vu0v',
     'parachute-de-resistance':    'https://buy.stripe.com/fZu14nbZ1bDz1PQg3a5Vu0w',
     'gants-gardien-pro':          'https://buy.stripe.com/5kQ4gz0gjfTPbqqaIQ5Vu0x',
@@ -104,7 +107,7 @@
     }
     // Fallback : localStorage (même calcul que app.js)
     try {
-      var keys = ['curiosa_cart', 'serenlab_cart', 'technova_cart', 'focuslab_cart', 'footperf_cart'];
+      var keys = ['footperf_v2_cart', 'curiosa_cart', 'serenlab_cart', 'technova_cart', 'focuslab_cart', 'footperf_cart'];
       for (var c = 0; c < keys.length; c++) {
         var cart = JSON.parse(localStorage.getItem(keys[c]) || '[]');
         if (cart.length > 0) {
@@ -122,7 +125,7 @@
   function getCartProductIds() {
     var ids = [];
     try {
-      var keys = ['footperf_cart'];
+      var keys = ['footperf_v2_cart'];
       for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (k && /_cart$/i.test(k) && keys.indexOf(k) === -1) keys.push(k); }
       for (var c = 0; c < keys.length; c++) {
         var cart = JSON.parse(localStorage.getItem(keys[c]) || '[]');
