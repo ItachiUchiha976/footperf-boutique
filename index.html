@@ -319,7 +319,7 @@
   <div class="trust-bar">
     <div class="trust-inner">
       <div class="trust-item"><span class="trust-icon">🚚</span> Livraison 12 à 20 jours ouvrés</div>
-      <div class="trust-item"><span class="trust-icon">🔒</span> Paiement sécurisé PayPal · CB acceptée</div>
+      <div class="trust-item"><span class="trust-icon">🔒</span> Paiement sécurisé · Carte bancaire</div>
       <div class="trust-item"><span class="trust-icon">↩️</span> Retours gratuits 14 jours</div>
       <div class="trust-item"><span class="trust-icon">🏆</span> Équipements sport testés et sélectionnés</div>
     </div>
@@ -381,9 +381,10 @@
 
           <div class="fiche-actions">
             <button class="fiche-add" onclick="addToCart('buts-pop-up')">🛒 Ajouter au panier — 44,00 €</button>
+            <button class="fiche-paypal" data-bos-cb data-bos-price="44" data-bos-key="buts-pop-up" onclick="bosProductCB(this)">💳 Acheter maintenant par carte — 44,00 €</button>
             <div class="checkout-stripe"></div>
           </div>
-          <p class="cta-micro-note">🔒 Paiement sécurisé (CB ou PayPal, sans créer de compte) · 🚚 Livraison offerte, estimée 12 à 20 jours ouvrés · ↩️ 14 jours pour changer d'avis</p>
+          <p class="cta-micro-note">🔒 Paiement sécurisé par carte bancaire, sans créer de compte · 🚚 Livraison offerte, estimée 12 à 20 jours ouvrés · ↩️ 14 jours pour changer d'avis</p>
 
           <div id="bos-trust-mount"></div>
 
@@ -442,7 +443,7 @@
         <div class="why-card">
           <div class="why-icon">🔒</div>
           <div class="why-title">Paiement sécurisé</div>
-          <div class="why-desc">Paiement 100% sécurisé via PayPal, carte bancaire acceptée sans créer de compte.</div>
+          <div class="why-desc">Paiement 100% sécurisé par carte bancaire (Stripe), sans créer de compte.</div>
         </div>
         <div class="why-card">
           <div class="why-icon">🎥</div>
@@ -473,7 +474,7 @@
         </div>
         <div class="why-card">
           <div class="why-icon">🔒</div>
-          <div class="why-title">Paiement sécurisé via PayPal</div>
+          <div class="why-title">Paiement sécurisé par carte bancaire</div>
           <div class="why-desc">Carte bancaire acceptée sans créer de compte. Tes coordonnées bancaires ne nous sont jamais transmises.</div>
         </div>
         <div class="why-card">
@@ -512,7 +513,7 @@
         </details>
         <details class="faq-item">
           <summary>Le paiement est-il sécurisé ?</summary>
-          <p>Oui. Deux options, toutes les deux chiffrées : <strong>carte bancaire via Stripe</strong> ou <strong>PayPal</strong> (la CB fonctionne aussi via PayPal sans créer de compte). Vos coordonnées bancaires ne transitent jamais par notre site et ne nous sont jamais transmises.</p>
+          <p>Oui. Le paiement se fait par <strong>carte bancaire via Stripe</strong>, sur une page chiffrée. Vos coordonnées bancaires ne transitent jamais par notre site et ne nous sont jamais transmises.</p>
         </details>
         <details class="faq-item">
           <summary>Le set de buts convient à quel âge ?</summary>
@@ -663,9 +664,9 @@
         <span>Total</span>
         <span id="cartTotal">0,00€</span>
       </div>
-      <button class="checkout-btn btn-checkout" type="button" onclick="bosPayPalCheckout()">Payer par PayPal</button>
+      <button class="checkout-btn btn-checkout" type="button" data-bos-cb onclick="bosCartCB(this)">💳 Payer par carte bancaire</button>
       <div id="stripe-btn-container"></div>
-      <p class="cart-note">Paiement sécurisé par PayPal (carte bancaire acceptée) · Livraison 12-20j · Retour 14j</p>
+      <p class="cart-note">Paiement sécurisé par carte bancaire (Stripe) · Montant débité = total affiché · Livraison 12-20j · Retour 14j</p>
     </div>
   </div>
 </div>
@@ -858,7 +859,7 @@ function renderComingSoon() {
 // ⚠️ Clé bumpée le 13/07/2026 : les anciens paniers contiennent des ids obsolètes
 // (fp-but, fp-ladder…) qui ne sont PAS mappés côté fulfillment → commande fournisseur
 // jamais créée. On purge l'ancien panier et on repart sur une clé propre.
-// (Le suffixe reste `_cart` : bos-paypal.js / bos-stripe.js détectent les paniers via /_cart$/.)
+// (Le suffixe reste `_cart` : bos-stripe.js detecte les paniers via /_cart$/.)
 const CART_KEY = 'footperf_v2_cart';
 try { localStorage.removeItem('footperf_cart'); } catch (e) {}
 
@@ -866,7 +867,7 @@ let cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
 
 function saveCart() { localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
 
-// BOS — expose panier pour checkout PayPal cross-page (fix isolation cart multi-boutique, 01/07/2026)
+// BOS — expose le panier pour le checkout CB cross-page (isolation cart multi-boutique).
 try {
   window.getCart = function () {
     try {
@@ -925,11 +926,13 @@ function renderCartItems() {
   const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
   const maxPrice = cart.length > 0 ? Math.max(...cart.map(i => i.price)) : 0;
   // BOS 13/07/2026 — remise arrondie au centime, calcul UNIQUE partage avec le checkout
-  // (bos-promo.js / bos-paypal.js / bos-stripe.js) : total affiche == total facture.
+  // (bos-promo.js / bos-stripe.js) : total affiche == total facture.
   const discount = (window.BOS_PROMO && window.BOS_PROMO.discount)
     ? window.BOS_PROMO.discount(cart)
     : Math.round(maxPrice * 10) / 100;
   const total = Math.round((subtotal - discount) * 100) / 100;
+  // BOS 13/07/2026 — le checkout CB (bos-stripe.js) facture EXACTEMENT ce total affiche.
+  window.bosCartTotal = function(){ return total; };
   const totalEl = document.getElementById('cartTotal');
   setTimeout(function() { if (window.initStripe) window.initStripe(); }, 200);
   if (discount > 0) {
@@ -961,8 +964,9 @@ function closeCartOutside(e) { if (e.target === document.getElementById('cartOve
 // ============================================================
 // CHECKOUT
 // ============================================================
-// Paiement réel = PayPal (Payments Standard), voir bos-paypal.js
-// (bosPayPalCheckout appelé directement depuis le bouton du panier).
+// Paiement reel = carte bancaire (Stripe), voir bos-stripe.js -> bosCartCB() / bosProductCB().
+// PayPal retire du parcours physique le 13/07/2026 (il envoyait les prix pleins, sans la
+// remise affichee, et aucun fulfillment ne lisait ses ventes -> client jamais livre).
 
 // ============================================================
 // EMAIL CAPTURE
@@ -1038,7 +1042,6 @@ updateCartCount();
 </script>
 
 <!-- umami-start --><script defer src="https://cloud.umami.is/script.js" data-website-id="d0fa94fe-a108-4590-a465-8f0017569370"></script><!-- umami-end -->
-<script src="bos-paypal.js"></script>
 <script src="bos-stripe.js"></script>
 <script src="bos-trust.js" defer></script>
 <!-- Pas de bos-reviews.js / reviews-data.js : 0 avis réel remonté par le fournisseur

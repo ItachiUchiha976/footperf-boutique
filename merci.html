@@ -134,7 +134,7 @@
   <div class="trust-inner">
     <div class="trust-item">🚚 Livraison 12 à 20 jours ouvrés</div>
     <div class="trust-item">↩️ Retours gratuits 14 jours</div>
-    <div class="trust-item">🔒 Paiement sécurisé PayPal</div>
+    <div class="trust-item">🔒 Paiement sécurisé par carte bancaire</div>
   </div>
 </div>
 
@@ -184,14 +184,13 @@
 
 <!-- umami-start --><script defer src="https://cloud.umami.is/script.js" data-website-id="d0fa94fe-a108-4590-a465-8f0017569370"></script><!-- umami-end -->
 <script>
-// BOS — ne compter l'evenement "purchase" que sur un vrai retour PayPal (referrer paypal.com
-// ou flag sessionStorage pose par bos-paypal.js avant le submit), jamais sur un refresh/acces direct.
-// Ajout 04/07/2026.
+// BOS 13/07/2026 — le parcours physique passe par Stripe (PayPal retire du physique).
+// On ne compte "purchase" que sur un vrai retour de checkout, jamais sur un refresh/acces direct.
 window.addEventListener('load', function(){
   try{
-    var cameFromPaypal = /paypal\.com/i.test(document.referrer || '');
+    var cameFromStripe = /stripe\.com/i.test(document.referrer || '');
     var pending = sessionStorage.getItem('bos_pp_pending') === '1';
-    if (window.umami && (cameFromPaypal || pending)) {
+    if (window.umami && (cameFromStripe || pending)) {
       umami.track('purchase', {boutique:'footperf'});
     }
     sessionStorage.removeItem('bos_pp_pending');
