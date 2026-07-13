@@ -135,81 +135,91 @@
     return ids;
   }
 
-  var _stripeDone = false;
-  function addStripeButton(productKey) {
-    if (_stripeDone) return;
-    var isCart = location.pathname.indexOf('panier') !== -1 || !!document.getElementById('cartFooter');
-    var link = productKey ? (STRIPE_LINKS[productKey] || null) : null;
-    if (!link && !isCart) return;
+  var BTN_CSS = 'display:inline-block;width:100%;max-width:400px;padding:14px 24px;background:#635BFF;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:16px;cursor:pointer;border:none;transition:background 0.2s;';
+  var BTN_HTML = '<span style="display:flex;align-items:center;justify-content:center;gap:8px;">' +
+    '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 4.5c-2.5 0-4.5 2-4.5 4.5s2 4.5 4.5 4.5 4.5-2 4.5-4.5-2-4.5-4.5-4.5z"/><rect x="2" y="4" width="20" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>' +
+    '<span>💳 Payer par CB</span></span>';
 
-    var container = document.querySelector('.checkout-stripe') || document.getElementById('stripe-btn-container');
-    if (!container) {
-      var anchor = document.querySelector('.btn-checkout') ||
-                   document.querySelector('.btn-addcart, [data-add-cart]') ||
-                   document.querySelector('h1');
-      if (anchor && anchor.parentNode) {
-        container = document.createElement('div');
-        container.className = 'checkout-stripe';
-        container.style.cssText = 'margin-top:12px;text-align:center;';
-        anchor.parentNode.insertBefore(container, anchor.nextSibling);
-      }
-    }
-    if (!container) return;
-
-    var btn = document.createElement(isCart ? 'button' : 'a');
-    if (link) { btn.href = link; btn.target = '_top'; btn.rel = 'noopener'; }
-    btn.className = isCart ? 'btn btn-stripe-cart' : 'btn btn-stripe';
-    btn.innerHTML = '<span style="display:flex;align-items:center;justify-content:center;gap:8px;">' +
-      '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 4.5c-2.5 0-4.5 2-4.5 4.5s2 4.5 4.5 4.5 4.5-2 4.5-4.5-2-4.5-4.5-4.5z"/><rect x="2" y="4" width="20" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>' +
-      '<span>💳 Payer par CB</span></span>';
-    btn.style.cssText = 'display:inline-block;width:100%;max-width:400px;padding:14px 24px;background:#635BFF;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:16px;cursor:pointer;border:none;transition:background 0.2s;';
+  function styleBtn(btn) {
+    btn.innerHTML = BTN_HTML;
+    btn.style.cssText = BTN_CSS;
     btn.onmouseover = function(){ this.style.background = '#4F46E5'; };
     btn.onmouseout  = function(){ this.style.background = '#635BFF'; };
+  }
+  function trackBtn() {
+    try { if (window.umami && typeof umami.track === 'function') umami.track('view_stripe_button', {page: location.pathname}); } catch(e) {}
+  }
 
-    if (isCart) {
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        var total = getCartTotal();
-        if (total <= 0) { alert('Ton panier est vide.'); return; }
-        btn.textContent = '⏳ Redirection vers Stripe...';
-        btn.disabled = true;
-        fetch(STRIPE_API, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ amount: total, currency: 'eur', boutique: 'footperf', products: getCartProductIds() }),
-        })
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
-          if (data.url) { window.location.href = data.url; }
-          else { alert('Erreur de paiement : ' + (data.error || 'inconnue')); btn.textContent = '💳 Payer par CB'; btn.disabled = false; }
-        })
-        .catch(function(err) {
-          alert('Impossible de contacter le serveur de paiement. Réessaie dans quelques instants.');
-          btn.textContent = '💳 Payer par CB';
-          btn.disabled = false;
-        });
-      });
-    }
-
+  // ── Bouton CB "fiche produit" : lien Stripe Payment Link direct (montant fixe) ──
+  // FootPerf est en single-page : la fiche produit phare ET le panier coexistent.
+  // Les deux boutons sont donc rendus séparément (guards distincts), sinon la fiche
+  // capterait le conteneur du panier et le panier n'aurait plus de bouton CB.
+  var _linkDone = false;
+  function addLinkButton(productKey) {
+    if (_linkDone) return;
+    var link = STRIPE_LINKS[productKey];
+    var container = document.querySelector('.checkout-stripe');
+    if (!link || !container) return;
+    var btn = document.createElement('a');
+    btn.href = link; btn.target = '_top'; btn.rel = 'noopener';
+    btn.className = 'btn btn-stripe';
+    styleBtn(btn);
     container.appendChild(btn);
-    _stripeDone = true;
+    _linkDone = true;
+    trackBtn();
+  }
 
-    try {
-      if (window.umami && typeof umami.track === 'function') {
-        umami.track('view_stripe_button', {page: location.pathname});
-      }
-    } catch(e) {}
+  // ── Bouton CB "panier" : session checkout dynamique (montant exact du panier) ──
+  var _cartDone = false;
+  function addCartButton() {
+    if (_cartDone) return;
+    var container = document.getElementById('stripe-btn-container');
+    if (!container) {
+      var anchor = document.querySelector('.btn-checkout');
+      if (!anchor || !anchor.parentNode) return;
+      container = document.createElement('div');
+      container.id = 'stripe-btn-container';
+      container.style.cssText = 'margin-top:12px;text-align:center;';
+      anchor.parentNode.insertBefore(container, anchor.nextSibling);
+    }
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'btn btn-stripe-cart';
+    styleBtn(btn);
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      var total = getCartTotal();
+      if (total <= 0) { alert('Ton panier est vide.'); return; }
+      btn.textContent = '⏳ Redirection vers Stripe...';
+      btn.disabled = true;
+      fetch(STRIPE_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: total, currency: 'eur', boutique: 'footperf', products: getCartProductIds() }),
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.url) { window.location.href = data.url; }
+        else { alert('Erreur de paiement : ' + (data.error || 'inconnue')); styleBtn(btn); btn.disabled = false; }
+      })
+      .catch(function(err) {
+        alert('Impossible de contacter le serveur de paiement. Réessaie dans quelques instants.');
+        styleBtn(btn);
+        btn.disabled = false;
+      });
+    });
+    container.appendChild(btn);
+    _cartDone = true;
+    trackBtn();
   }
 
   function init() {
-    // Détecter page panier OU panier intégré (FootPerf one-page)
+    // 1) Fiche produit (clé via data-stripe-product / slug d'URL / H1)
+    var key = findProductKey();
+    if (key) addLinkButton(key);
+    // 2) Panier : page dédiée OU panier intégré (FootPerf one-page)
     var isCart = location.pathname.indexOf('panier') !== -1 || !!document.getElementById('cartFooter');
-    if (isCart) {
-      addStripeButton(null);
-    } else {
-      var key = findProductKey();
-      if (key) addStripeButton(key);
-    }
+    if (isCart) addCartButton();
   }
 
   if (document.readyState === 'loading') {
