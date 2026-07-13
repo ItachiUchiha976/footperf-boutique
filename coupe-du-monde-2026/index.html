@@ -147,7 +147,7 @@ footer { background: var(--green); color: rgba(255,255,255,0.75); padding: 2.5re
   .cd-unit strong { font-size: 1.05rem; }
 }
 </style>
-<script src="bos-promo.js"></script>
+<script src="../bos-promo.js"></script>
 </head>
 <body>
 <div data-bos-product-id="guide-cdm2026" style="display:none"></div>
@@ -189,8 +189,8 @@ footer { background: var(--green); color: rgba(255,255,255,0.75); padding: 2.5re
         <span class="price">4,90 €</span>
         <span class="price-note">PDF · 28 pages · téléchargement immédiat</span>
       </div>
-      <button class="btn-buy" onclick="addToCartCDM()">
-        Ajouter au panier — 4,90 €
+      <button class="btn-buy" onclick="bosBuyNow('Guide &amp; Grand Quiz Coupe du Monde 2026 (PDF)', 4.90, 'guide-cdm2026')">
+        Obtenir le guide — 4,90 €
       </button>
       <div class="pay-reassure">🔒 Paiement sécurisé PayPal ou carte bancaire · aucun compte requis</div>
 
@@ -278,8 +278,8 @@ footer { background: var(--green); color: rgba(255,255,255,0.75); padding: 2.5re
     <span class="price">4,90 €</span>
     <span class="price-note">Paiement unique · pas d'abonnement</span>
   </div>
-  <button class="btn-buy" onclick="addToCartCDM()">
-    Ajouter au panier — 4,90 €
+  <button class="btn-buy" onclick="bosBuyNow('Guide &amp; Grand Quiz Coupe du Monde 2026 (PDF)', 4.90, 'guide-cdm2026')">
+    Obtenir le guide — 4,90 €
   </button>
 </div>
 
@@ -387,7 +387,7 @@ footer { background: var(--green); color: rgba(255,255,255,0.75); padding: 2.5re
 })();
 </script>
 
-<script src="../bos-stripe.js"></script>
+<script src="bos-stripe.js"></script>
 <script src="../bos-consent.js?v=1" defer></script>
 </body>
 </html>
