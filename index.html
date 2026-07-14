@@ -665,7 +665,11 @@
         <span>Total</span>
         <span id="cartTotal">0,00€</span>
       </div>
-      <button class="checkout-btn btn-checkout" type="button" data-bos-cb onclick="bosCartCB(this)">💳 Payer par carte bancaire</button>
+            <label style="display:flex;gap:8px;align-items:flex-start;font-size:0.8rem;color:var(--gray-600);margin-bottom:0.8rem;line-height:1.35;cursor:pointer;text-align:left">
+        <input type="checkbox" id="cgv-check" style="margin-top:3px;flex:none">
+        <span>J'accepte les <a href="#" onclick="closeCart();showLegal('legalCgv');return false;" style="color:var(--green);font-weight:700;text-decoration:underline">conditions générales de vente</a>.</span>
+      </label>
+<button class="checkout-btn btn-checkout" type="button" data-bos-cb onclick="bosCartCB(this)">💳 Payer par carte bancaire</button>
       <div id="stripe-btn-container"></div>
       <p class="cart-note">Paiement sécurisé par carte bancaire (Stripe) · Montant débité = total affiché · Livraison 12-20j · Retour 14j</p>
     </div>
