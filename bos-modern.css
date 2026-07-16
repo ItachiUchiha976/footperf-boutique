@@ -170,3 +170,23 @@ body.bos-atc-open { padding-bottom: 76px; }
   .btn-primary::after, .btn-buy::after { animation: none !important; }
   [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
+
+/* Typo descriptions — 17/07 */
+/* Ame "terrain / energie" pour les descriptions produit : Titillium Web
+   (police sport/technique), fond vert tres pale, liseret --lime a gauche.
+   Selecteurs combines (#productsGrid + .product-card) pour une specificite
+   strictement superieure a la regle .product-desc du <style> inline
+   d'index.html (specificite 0,1,0), qui charge AVANT ce fichier. */
+#productsGrid .product-desc,
+.product-card .product-desc {
+  font-family: 'Titillium Web', 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 0.97rem;
+  line-height: 1.68;
+  color: var(--green-light);
+  background: #F0F7F2;
+  border-left: 3px solid var(--lime);
+  border-radius: 7px;
+  padding: 0.6rem 0.9rem;
+  margin-bottom: 0.9rem;
+}
