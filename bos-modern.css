@@ -149,6 +149,18 @@ body.bos-atc-open { padding-bottom: 76px; }
   body.bos-atc-open { padding-bottom: 0; }
 }
 
+/* ---------- 5ter. HEADER AUTO-MASQUANT AU SCROLL (16/07, demande Fred) ----------
+   FootPerf n'a pas de classe .header : la barre sticky est le <nav> nu
+   (position:sticky inline sur index.html/merci/politique/coupe-du-monde-2026).
+   Le menu disparait en descendant (plus de place pour le contenu) et
+   reapparait des qu'on remonte — ordi ET mobile. */
+.header, nav {
+  transition: transform .28s ease;
+}
+.header.bos-nav-hidden, nav.bos-nav-hidden {
+  transform: translateY(-110%);
+}
+
 /* ---------- 5. ACCESSIBILITE : respect du mouvement reduit ---------- */
 @media (prefers-reduced-motion: reduce) {
   .hero-cover .cover-frame,

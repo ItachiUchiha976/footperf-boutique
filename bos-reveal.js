@@ -140,6 +140,25 @@
         toggle(true);
       }
     })();
+
+    /* ---- Header auto-masquant au scroll (16/07, demande Fred) ----
+       FootPerf n'a pas de classe .header (barre sticky = <nav> nu) ni de
+       menu mobile overlay : on cible .header puis nav en repli. */
+    (function autoHideHeader() {
+      var h = document.querySelector('.header') || document.querySelector('nav');
+      if (!h) return;
+      var lastY = window.scrollY, tk = false;
+      window.addEventListener('scroll', function () {
+        if (tk) return; tk = true;
+        window.requestAnimationFrame(function () {
+          var y = window.scrollY;
+          var menuOpen = document.querySelector('.mobile-menu.open');
+          if (!menuOpen && y > lastY + 8 && y > 160) h.classList.add('bos-nav-hidden');
+          else if (y < lastY - 8 || y <= 160) h.classList.remove('bos-nav-hidden');
+          lastY = y; tk = false;
+        });
+      }, { passive: true });
+    })();
   } catch (err) { /* en cas d'erreur, on laisse le contenu visible (CSS reduced-motion non atteint : fail-safe) */
     document.querySelectorAll('[data-reveal]').forEach(function (el) { el.classList.add('is-in'); });
   }
