@@ -1,0 +1,160 @@
+/* ============================================================
+   BOS MODERN LAYER — FootPerf — 16/07/2026
+   Couche ADDITIVE de modernisation (hero vivant, boutons premium,
+   cartes produit profondes, reveal au scroll). Ne remplace aucune
+   regle de base : uniquement des enrichissements visuels.
+   Adaptee des tokens FootPerf (--green #0d3b2a, --lime #c8f000).
+   Portee depuis curiosa/bos-modern.css (commit e220d76).
+   FootPerf n'a pas de styles.css externe (tout est inline dans
+   <style> par page) : ce fichier est charge en <link> classique
+   apres le bloc <style> de chaque page.
+   Respecte prefers-reduced-motion.
+   ============================================================ */
+
+/* ---------- 1. HERO VIVANT ---------- */
+/* Le hero FootPerf est texte seul (pas de visuel produit dans le hero) :
+   .hero::before affiche deja une photo de terrain a 15% d'opacite.
+   On ajoute une seconde couche (etoiles + halo) via ::after,
+   avec un empilement explicite pour ne jamais couvrir le contenu. */
+.hero { position: relative; }
+.hero::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 22%, rgba(200,240,0,.55), transparent),
+    radial-gradient(1.2px 1.2px at 28% 68%, rgba(255,255,255,.4),  transparent),
+    radial-gradient(1.7px 1.7px at 62% 30%, rgba(200,240,0,.5),  transparent),
+    radial-gradient(1.1px 1.1px at 82% 58%, rgba(255,255,255,.35), transparent),
+    radial-gradient(1.3px 1.3px at 46% 82%, rgba(200,240,0,.45),  transparent),
+    radial-gradient(1.2px 1.2px at 90% 16%, rgba(255,255,255,.4), transparent),
+    radial-gradient(1.0px 1.0px at 8%  54%, rgba(200,240,0,.4),  transparent);
+  animation: bosTwinkle 5s ease-in-out infinite alternate;
+}
+@keyframes bosTwinkle { from { opacity: .25; } to { opacity: .85; } }
+.hero-inner { position: relative; z-index: 2; }
+
+/* Halo lumineux anime derriere la couverture du guide (coupe-du-monde-2026, hero-cover) */
+.hero-cover { position: relative; }
+.hero-cover::before {
+  content: '';
+  position: absolute; inset: -12%;
+  background: radial-gradient(circle at 50% 45%,
+     rgba(200,240,0,.32) 0%,
+     rgba(200,240,0,.16) 34%,
+     transparent 68%);
+  filter: blur(8px);
+  z-index: 0;
+  animation: bosGlow 6s ease-in-out infinite;
+  pointer-events: none;
+}
+.hero-cover .cover-frame { position: relative; z-index: 1; animation: bosFloat 7s ease-in-out infinite; will-change: transform; }
+
+@keyframes bosGlow {
+  0%,100% { opacity: .7;  transform: scale(1); }
+  50%     { opacity: 1;   transform: scale(1.07); }
+}
+@keyframes bosFloat {
+  0%,100% { transform: translateY(0)     rotate(-.6deg); }
+  50%     { transform: translateY(-14px) rotate(.6deg); }
+}
+
+/* Titre : reflet lime anime sur le mot cle en italique */
+.hero h1 em {
+  background: linear-gradient(100deg, #E4FF66 0%, #F7FFD1 28%, #8FB800 52%, #F7FFD1 78%, #E4FF66 100%);
+  background-size: 220% auto;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  animation: bosShine 6.5s linear infinite;
+}
+@keyframes bosShine { to { background-position: 220% center; } }
+
+/* ---------- 2. BOUTONS PREMIUM ---------- */
+.btn-primary, .btn-buy {
+  position: relative; overflow: hidden;
+  transition: transform .2s, box-shadow .2s, background .2s, border-color .2s;
+}
+.btn-primary::after, .btn-buy::after {
+  content: ''; position: absolute; top: 0; left: -120%;
+  width: 60%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.6), transparent);
+  transform: skewX(-18deg);
+  transition: left .6s ease;
+  pointer-events: none;
+}
+.btn-primary:hover::after, .btn-buy:hover::after { left: 135%; }
+
+/* CTA carte produit ("Ajouter") */
+.add-to-cart {
+  position: relative; overflow: hidden;
+  transition: background .2s, transform .2s, box-shadow .2s;
+}
+.add-to-cart:hover { box-shadow: 0 8px 20px rgba(13,59,42,.28); }
+
+/* ---------- 3. CARTES PRODUIT PREMIUM ---------- */
+.product-card { transition: transform .32s cubic-bezier(.2,.7,.2,1), box-shadow .32s; }
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 50px rgba(13,59,42,.20), 0 4px 14px rgba(200,240,0,.18);
+}
+/* .product-img est un <img> direct (pas de wrapper div) : pas de ::after possible,
+   on utilise un filtre au survol de la carte pour l'effet de profondeur. */
+.product-card:hover .product-img { filter: brightness(.95) saturate(1.08); transition: filter .3s; }
+
+/* ---------- 4. REVEAL AU SCROLL ---------- */
+[data-reveal] {
+  opacity: 0; transform: translateY(26px);
+  transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1);
+}
+[data-reveal].is-in { opacity: 1; transform: none; }
+[data-reveal-delay="1"] { transition-delay: .08s; }
+[data-reveal-delay="2"] { transition-delay: .16s; }
+[data-reveal-delay="3"] { transition-delay: .24s; }
+
+/* ---------- 5bis. BARRE D'ACHAT STICKY MOBILE ----------
+   FootPerf est une boutique catalogue mono-page (plusieurs produits sur
+   index.html, pas de fiche produit dediee) : il n'existe pas de bouton
+   [data-add-cart] ni #add-to-cart-btn unique representant "le" produit
+   de la page. bos-reveal.js cherche ces selecteurs standards ; s'il n'en
+   trouve aucun (cas de FootPerf), la barre sticky ne se construit tout
+   simplement pas — comportement volontaire, pas un bug. */
+.bos-sticky-atc {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 900;
+  display: flex; align-items: center; gap: .8rem;
+  padding: .6rem .9rem calc(.6rem + env(safe-area-inset-bottom, 0px));
+  background: rgba(13,59,42,.96);
+  border-top: 1px solid rgba(200,240,0,.25);
+  backdrop-filter: blur(8px);
+  transform: translateY(110%);
+  transition: transform .3s ease;
+}
+.bos-sticky-atc.is-visible { transform: translateY(0); }
+.bos-sticky-atc__meta { min-width: 0; }
+.bos-sticky-atc__price { color: var(--lime); font-weight: 800; font-size: 1.12rem; line-height: 1.1; white-space: nowrap; }
+.bos-sticky-atc__name {
+  color: rgba(255,255,255,.75); font-size: .72rem; line-height: 1.25;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 38vw;
+}
+.bos-sticky-atc__btn {
+  flex: 1; border: none; cursor: pointer;
+  background: var(--lime); color: var(--green);
+  font-weight: 700; font-size: .95rem; font-family: inherit;
+  padding: .8rem 1rem; border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(200,240,0,.3);
+  white-space: nowrap;
+}
+.bos-sticky-atc__btn:active { transform: scale(.98); }
+body.bos-atc-open { padding-bottom: 76px; }
+@media (min-width: 768px) {
+  .bos-sticky-atc { display: none; }
+  body.bos-atc-open { padding-bottom: 0; }
+}
+
+/* ---------- 5. ACCESSIBILITE : respect du mouvement reduit ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero-cover .cover-frame,
+  .hero-cover::before,
+  .hero::after,
+  .hero h1 em,
+  .btn-primary::after, .btn-buy::after { animation: none !important; }
+  [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
