@@ -261,6 +261,14 @@
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .mobile-cta-nav { display: inline-block; }
+      /* BOS 27/07/2026 — en-tete mobile : logo + "Commander" + panier ne tenaient pas dans
+         390px (aucun gap, aucun retrecissement) => le bouton lime demarrait collé au "f" de
+         "FootPerf" et le panier passait sur 2 lignes. On donne un vrai espacement et on
+         laisse le logo/le CTA se reduire au lieu de se chevaucher. */
+      .nav-inner { gap: 10px; }
+      .logo { font-size: 1.25rem; flex: 0 0 auto; }
+      .mobile-cta-nav { margin-right: 0; font-size: 0.78rem; padding: 0.45rem 0.7rem; }
+      .cart-btn { white-space: nowrap; padding: 0.45rem 0.75rem; font-size: 0.85rem; flex: 0 0 auto; }
       .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .email-form { flex-direction: column; }
       .email-input { border-radius: 10px; }
@@ -272,6 +280,11 @@
     @media (max-width: 480px) {
       .cart-modal, .checkout-modal { max-width: 100%; border-radius: var(--radius) var(--radius) 0 0; margin-top: auto; }
       .modal-overlay { align-items: flex-end; padding: 0; }
+      /* BOS 27/07/2026 — sur les petits ecrans (iPhone 390px), "Mon panier" en toutes lettres
+         faisait deborder l'en-tete. L'icone + le compteur suffisent (convention e-commerce),
+         et le libelle complet reste lu par les lecteurs d'ecran via aria-label. */
+      nav { padding: 0 1rem; }
+      .cart-label { display: none; }
     }
 
     /* ============================================================
@@ -428,8 +441,8 @@
       <a href="#newsletter" onclick="showMain()">Newsletter</a>
     </div>
     <a href="#produits" class="mobile-cta-nav">Commander →</a>
-    <button class="cart-btn" onclick="openCart()">
-      🛒 Mon panier <span class="cart-count" id="cartCount">0</span>
+    <button class="cart-btn" onclick="openCart()" aria-label="Mon panier">
+      🛒 <span class="cart-label">Mon panier</span> <span class="cart-count" id="cartCount">0</span>
     </button>
   </div>
 </nav>
@@ -1206,6 +1219,23 @@ function showLegal(pageId) {
   });
   document.getElementById(pageId).classList.add('active');
   window.scrollTo(0, 0);
+}
+
+/* BOS 27/07/2026 — les pages de vente (ex. /coupe-du-monde-2026/) doivent pouvoir renvoyer
+   vers les CGV / mentions legales, qui vivent ici en sections masquees. On ouvre donc la
+   bonne section quand on arrive avec #legalCgv / #legalLivraison / #legalMentions. */
+function bosOpenLegalFromHash() {
+  var id = (location.hash || '').replace('#', '');
+  if (['legalCgv', 'legalLivraison', 'legalMentions'].indexOf(id) !== -1
+      && document.getElementById(id)) {
+    showLegal(id);
+  }
+}
+window.addEventListener('hashchange', bosOpenLegalFromHash);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bosOpenLegalFromHash);
+} else {
+  bosOpenLegalFromHash();
 }
 
 // ============================================================

@@ -132,6 +132,11 @@ footer { background: var(--green); color: rgba(255,255,255,0.75); padding: 2.5re
   .countdown-box { order: 4; }
   .price-row { order: 5; }
   .btn-buy { order: 6; max-width: 100%; }
+  /* BOS 27/07/2026 — sans order explicite, .checkout-stripe (injecte par bos-stripe.js)
+     retombait a order:0 et le bouton "Payer par CB" etait ejecte tout en haut, au-dessus
+     du H1, a ~1500px du bouton PayPal. Meme order que .btn-buy => il se place juste apres
+     lui (l'ordre du DOM departage a order egal). Regle §12.36 : les 2 rails cote a cote. */
+  .checkout-stripe { order: 6; }
   .pay-reassure { order: 7; }
   .lead-box { order: 8; }
   .hero-facts { order: 9; }
@@ -356,6 +361,9 @@ footer { background: var(--green); color: rgba(255,255,255,0.75); padding: 2.5re
   <button class="btn-buy" onclick="bosBuyNow('Guide &amp; Grand Quiz Coupe du Monde 2026 (PDF)', 4.90, 'guide-cdm2026')">
     🅿 Payer avec PayPal — 4,90 €
   </button>
+  <!-- BOS 27/07/2026 — §12.36 : partout ou il y a un bouton PayPal statique, le rail CB
+       doit etre juste a cote. Sans ce conteneur, bos-stripe.js n'injectait rien ici. -->
+  <div class="checkout-stripe" style="margin-top:10px;"></div>
 </div>
 
 <!-- FAQ -->
@@ -392,6 +400,11 @@ footer { background: var(--green); color: rgba(255,255,255,0.75); padding: 2.5re
       <div class="footer-links">
         <a href="/">Boutique</a>
         <a href="mailto:contact@footperf.fr">Contact</a>
+        <!-- BOS 27/07/2026 — page de vente sans acces aux CGV/mentions legales (obligation
+             legale). Les textes vivent dans l'accueil (#legalCgv / #legalMentions), ouverts
+             automatiquement a l'arrivee grace au handler de hash ajoute dans index.html. -->
+        <a href="/#legalCgv">CGV</a>
+        <a href="/#legalMentions">Mentions légales</a>
         <a href="/politique-confidentialite.html">Confidentialité</a>
       </div>
     </div>
