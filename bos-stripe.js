@@ -235,6 +235,12 @@
         if (!ancre && el.parentNode) ancre = el;
         el.style.display = 'none';
       });
+    /* Sur une FICHE produit (bloc fiche-grid), le badge « produit phare » et la
+       ligne de prix ne doivent pas survivre au retrait : les afficher au-dessus
+       du message d'indisponibilité serait incohérent. On les masque avec les
+       boutons. (31/07/2026 — finition demandée par Fred.) */
+    Array.prototype.forEach.call(bloc.querySelectorAll('.fiche-eyebrow, .fiche-price-row'),
+      function (el) { el.style.display = 'none'; });
     var msg = bosCreerMessage(cle, definitif, compact);
     /* On insère à la place des boutons masqués : le message se trouve donc là
        où le visiteur cherchait à acheter, pas en haut d'une autre section. */
